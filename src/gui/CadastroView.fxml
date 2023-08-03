@@ -42,6 +42,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CadastroController">
    <children>
+      <Button fx:id="cadastrarButton" layoutX="88.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleCadastrarButton" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Cadastre-se" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
       <TextField fx:id="txtNewNome" layoutX="88.0" layoutY="206.0" prefHeight="29.0" prefWidth="265.0" promptText="Nome" />
       <TextField fx:id="txtNewUsername" layoutX="88.0" layoutY="253.0" prefHeight="29.0" prefWidth="265.0" promptText="Username" />
       <Label layoutX="63.0" layoutY="110.0" prefHeight="64.0" prefWidth="177.0" text="Cadastro">
@@ -58,10 +63,5 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="RegisterButton" layoutX="88.0" layoutY="366.0" mnemonicParsing="false" onAction="#CadastroButtonOnAction" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Cadastre-se" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

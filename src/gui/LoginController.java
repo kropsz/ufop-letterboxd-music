@@ -31,7 +31,7 @@ public class LoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
+    
     public void loginButtonOnAction(ActionEvent e) {
         if (txtUsername.getText().isBlank() == false && txtPassoword.getText().isBlank() == false) {
             loginMessageLabel.setText("Voce tentou fazer login");
@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void handleCadastrarButton(ActionEvent o) {
+    private void handleCadastrarButton() {
         try {
             // Carrega o arquivo FXML da tela de cadastro
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/CadastroView.fxml"));

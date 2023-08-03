@@ -14,7 +14,17 @@
 		"c:/Users/samue/OneDrive/Área de Trabalho/pedro/libs/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib/javafx.web.jar",
 		"c:/Users/samue/OneDrive/Área de Trabalho/pedro/libs/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib/javafx-swt.ja",
 		"c:\\Users\\samue\\OneDrive\\Área de Trabalho\\pedro\\libs\\mysql-connector-j-8.1.0\\mysql-connector-j-8.1.0\\mysql-connector-j-8.1.0.jar",
-		"c:\\Users\\samue\\Downloads\\fontawesomefx-8.1.jar"
+		"c:\\Users\\samue\\Downloads\\fontawesomefx-8.1.jar",
+		"c:\\Java-libs\\javafx-sdk-20.0.2\\lib\\javafx.base.jar",
+		"c:\\Java-libs\\javafx-sdk-20.0.2\\lib\\javafx.controls.jar",
+		"c:\\Java-libs\\javafx-sdk-20.0.2\\lib\\javafx.fxml.jar",
+		"c:\\Java-libs\\javafx-sdk-20.0.2\\lib\\javafx.graphics.jar",
+		"c:\\Java-libs\\javafx-sdk-20.0.2\\lib\\javafx.media.jar",
+		"c:\\Java-libs\\javafx-sdk-20.0.2\\lib\\javafx.swing.jar",
+		"c:\\Java-libs\\javafx-sdk-20.0.2\\lib\\javafx.web.jar",
+		"c:\\Java-libs\\javafx-sdk-20.0.2\\lib\\javafx-swt.jar",
+		"c:\\Java-libs\\jdbc-connectors\\mysql-connector-j-8.0.33.jar",
+		"c:\\Java-libs\\fontawesomefx-8.1.jar"
 	],
 	"git.ignoreLimitWarning": true
 }

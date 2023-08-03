@@ -69,7 +69,7 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="RegisterButton" layoutX="40.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleCadastrarButton" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Cadastre-se" textFill="WHITE">
+            <Button fx:id="cadastrarButton" layoutX="40.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleCadastrarButton" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Cadastre-se" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
