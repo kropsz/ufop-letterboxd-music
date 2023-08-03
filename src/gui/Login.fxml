@@ -40,8 +40,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
    <children>
       <AnchorPane layoutX="-17.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #303234;" />
       <AnchorPane layoutX="492.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: white;">
@@ -61,13 +60,16 @@
             <FontAwesomeIcon iconName="USER" layoutX="12.0" layoutY="238.0" size="1.5em" />
             <TextField fx:id="txtUsername" layoutX="40.0" layoutY="219.0" prefHeight="25.0" prefWidth="234.0" promptText="Username" />
             <PasswordField fx:id="txtPassoword" layoutX="40.0" layoutY="262.0" prefHeight="25.0" prefWidth="234.0" promptText="Passwrord" />
-            <Label fx:id="loginMessageLabel" layoutX="42.0" layoutY="292.0" prefHeight="17.0" prefWidth="153.0" textFill="RED" />
-            <Button fx:id="lognButton" layoutX="40.0" layoutY="327.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: black;" text="Login" textFill="WHITE">
+            <Label fx:id="loginMessageLabel" layoutX="42.0" layoutY="292.0" prefHeight="17.0" prefWidth="234.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="lognButton" layoutX="40.0" layoutY="327.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="RegisterButton" layoutX="40.0" layoutY="397.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: black;" text="Cadastre-se" textFill="WHITE">
+            <Button fx:id="RegisterButton" layoutX="40.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleCadastrarButton" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Cadastre-se" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
