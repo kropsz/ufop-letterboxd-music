@@ -60,11 +60,11 @@
             <FontAwesomeIcon iconName="USER" layoutX="12.0" layoutY="238.0" size="1.5em" />
             <TextField fx:id="txtUsername" layoutX="40.0" layoutY="219.0" prefHeight="25.0" prefWidth="234.0" promptText="Username" />
             <PasswordField fx:id="txtPassoword" layoutX="40.0" layoutY="262.0" prefHeight="25.0" prefWidth="234.0" promptText="Passwrord" />
-            <Label fx:id="loginMessageLabel" layoutX="42.0" layoutY="292.0" prefHeight="17.0" prefWidth="234.0" textFill="RED">
+            <Label fx:id="loginMessageLabel" layoutX="42.0" layoutY="292.0" prefHeight="17.0" prefWidth="234.0" textFill="#00ffe9">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Button fx:id="lognButton" layoutX="40.0" layoutY="327.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Login" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="40.0" layoutY="327.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>

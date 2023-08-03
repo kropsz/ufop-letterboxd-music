@@ -9,15 +9,16 @@ public class Usuario {
     public Usuario() {
     }
 
-    
-   
     public Usuario(String nome, String username, String password) {
         this.nome = nome;
         this.username = username;
         this.password = password;
     }
 
-
+    public Usuario(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public Integer getId() {
         return id;

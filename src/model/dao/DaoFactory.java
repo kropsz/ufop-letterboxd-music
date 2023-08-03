@@ -8,6 +8,7 @@ public class DaoFactory {
     public static UsuarioDAO createuUsuarioDAO(){
         return new UsuarioDaoJDBC(DB.getConnection());
     }
+    
 
    // public static MusicaDAO createMusicaDAO(){
       //  return new MusicaDaoJDBC(DB.getConnection());

@@ -21,16 +21,18 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
     }
 
     @Override
-    public Usuario findById(Integer id) {
+    public Usuario findByUsername(String user) {
         PreparedStatement st = null;
         ResultSet rs = null;
         Usuario usuario;
         try {
             st = conn.prepareStatement("""
-                    INSERT INTO usuarios (nome, username, senha) VALUES (?, ?, ?)
+                   SELECT * 
+                   FROM usuarios 
+                   WHERE usuarios.Username = ?
                         """);
 
-            st.setInt(1, id);
+            st.setString(1, user);
             rs = st.executeQuery();
             if (rs.next()) {
                 // Criar um objeto Usuario com os dados do resultado
@@ -38,6 +40,8 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
                 usuario.setId(rs.getInt("ID"));
                 usuario.setNome(rs.getString("Nome"));
                 usuario.setUsername(rs.getString("Username"));
+                usuario.setPassword(rs.getString("Password"));
+                
                 return usuario;
             }
             return null;
@@ -89,13 +93,15 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
 
     @Override
     public void delete(Integer id) {
-        
-        
+                
     }
 
     @Override
-    public Usuario findByUsername(String user) {
+    public Usuario findById(Integer id) {
+        // TODO Auto-generated method stub
         return null;
     }
+
+    
 
 }

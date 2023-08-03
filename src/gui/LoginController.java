@@ -15,6 +15,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.dao.DaoFactory;
+import model.dao.interfaces.UsuarioDAO;
+import model.entities.Usuario;
 
 public class LoginController implements Initializable {
 
@@ -26,18 +29,29 @@ public class LoginController implements Initializable {
     private Label loginMessageLabel;
     @FXML
     private Button cadastrarButton;
+    @FXML
+    private Button loginButton;
+
+    private UsuarioDAO usuarioDAO = DaoFactory.createuUsuarioDAO();;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-    
+
     public void loginButtonOnAction(ActionEvent e) {
-        if (txtUsername.getText().isBlank() == false && txtPassoword.getText().isBlank() == false) {
-            loginMessageLabel.setText("Voce tentou fazer login");
+        String username = txtUsername.getText();
+        String password = txtPassoword.getText();
+        Usuario usuario = new Usuario(username, password);
+        usuarioDAO.findByUsername(username);
+        if (usuario.getUsername().equals(username) && usuario.getPassword().equals(password)) {
+            // Login bem-sucedido
+            loginMessageLabel.setText("Login com Sucesso ! ");
         } else {
-            loginMessageLabel.setText("Entre com seu username e senha");
+            // Login inválido
+            System.out.println("Usuário ou senha inválidos");
         }
+
     }
 
     @FXML

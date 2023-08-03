@@ -32,7 +32,6 @@ public class CadastroController{
 
     @FXML
     private void handleCadastrarButton() {
-        // Lógica para cadastrar o usuário
         String nome = txtNewNome.getText();
         String username = txtNewUsername.getText();
         String senha = txtNewPassoword.getText();
