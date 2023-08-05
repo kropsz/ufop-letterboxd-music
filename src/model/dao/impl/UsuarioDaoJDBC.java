@@ -49,6 +49,10 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         }
+        finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
     }
 
     @Override
@@ -98,7 +102,7 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
 
     @Override
     public Usuario findById(Integer id) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 

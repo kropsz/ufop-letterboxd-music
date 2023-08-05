@@ -46,13 +46,35 @@ public class LoginController implements Initializable {
         usuarioDAO.findByUsername(username);
         if (usuario.getUsername().equals(username) && usuario.getPassword().equals(password)) {
             // Login bem-sucedido
-            loginMessageLabel.setText("Login com Sucesso ! ");
+            loginMessageLabel.setText("Login com Sucesso ! ");{
+            abrirJanelaMusicas();
+        } 
         } else {
             // Login inválido
             System.out.println("Usuário ou senha inválidos");
         }
-
     }
+
+
+    private void abrirJanelaMusicas() {
+        try {
+            // Carrega o arquivo FXML da janela de músicas
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MusicaView.fxml"));
+            Parent root = loader.load();
+
+            // Cria uma nova janela para a janela de músicas
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Fecha a janela de login
+            Stage loginStage = (Stage) loginButton.getScene().getWindow();
+            loginStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private void handleCadastrarButton() {

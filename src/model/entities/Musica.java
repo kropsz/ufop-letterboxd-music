@@ -1,30 +1,28 @@
 package model.entities;
 
 public class Musica {
-    private Long id;
+    private Integer id;
     private String titulo;
     private String artista;
     private String estilo;
     private Integer anoLanc;
-    private String duração;
 
     public Musica() {
     }
 
-    public Musica(Long id, String titulo, String artista, String estilo, Integer anoLanc, String duração) {
+    public Musica(Integer id, String titulo, String artista, String estilo, Integer anoLanc) {
         this.id = id;
         this.titulo = titulo;
         this.artista = artista;
         this.estilo = estilo;
         this.anoLanc = anoLanc;
-        this.duração = duração;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -58,14 +56,6 @@ public class Musica {
 
     public void setAnoLanc(Integer anoLanc) {
         this.anoLanc = anoLanc;
-    }
-
-    public String getDuração() {
-        return duração;
-    }
-
-    public void setDuração(String duração) {
-        this.duração = duração;
     }
 
     @Override
