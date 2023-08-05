@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -9,7 +10,7 @@ import model.dao.DaoFactory;
 import model.dao.interfaces.UsuarioDAO;
 import model.entities.Usuario;
 
-public class CadastroController{
+public class CadastroController {
 
     @FXML
     private TextField txtNewUsername;
@@ -32,17 +33,19 @@ public class CadastroController{
         Usuario usuario = new Usuario(nome, username, senha);
         usuarioDAO.create(usuario);
 
-         if (txtNewUsername.getText().isBlank() != false && txtNewNome.getText().isBlank() != false
+        if (txtNewUsername.getText().isBlank() != false && txtNewNome.getText().isBlank() != false
                 && txtNewPassoword.getText().isBlank() != false) {
             cadastroMessageLabel.setText("Tente novamente");
         } else {
-            cadastroMessageLabel.setText("Cadastro Realizado com Sucesso !");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Cadastro");
+            alert.setHeaderText(null);
+            alert.setContentText("Cadastro efetuado com sucesso!");
+            alert.showAndWait();
         }
 
         txtNewNome.clear();
         txtNewUsername.clear();
         txtNewPassoword.clear();
-        
-        
-}   
+    }
 }

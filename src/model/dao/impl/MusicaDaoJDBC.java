@@ -20,9 +20,31 @@ public class MusicaDaoJDBC implements MusicaDAO {
     }
 
     @Override
-    public Musica findByMusica(String musica) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByMusica'");
+    public List<Musica> findByMusica(String titulo) {
+        List<Musica> musicasEncontradas = new ArrayList<>();
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        Musica musica;
+        try {
+            st = conn.prepareStatement("""
+                    SELECT * FROM musicas WHERE titulo LIKE ?
+                        """);
+            st.setString(1, "%" + titulo + "%");
+            rs = st.executeQuery();
+            while (rs.next()) {
+                musica = new Musica();
+                musica.setId(rs.getInt("ID"));
+                musica.setTitulo(rs.getString("Titulo"));
+                musica.setArtista(rs.getString("Artista"));
+                musica.setEstilo(rs.getString("Estilo"));
+                musica.setAnoLanc(rs.getInt("AnoLançamento"));
+                musicasEncontradas.add(musica);
+
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        return musicasEncontradas;
     }
 
     @Override

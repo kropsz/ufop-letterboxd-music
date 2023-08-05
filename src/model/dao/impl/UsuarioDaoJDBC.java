@@ -21,43 +21,8 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
     }
 
     @Override
-    public Usuario findByUsername(String user) {
-        PreparedStatement st = null;
-        ResultSet rs = null;
-        Usuario usuario;
-        try {
-            st = conn.prepareStatement("""
-                   SELECT * 
-                   FROM usuarios 
-                   WHERE usuarios.Username = ?
-                        """);
-
-            st.setString(1, user);
-            rs = st.executeQuery();
-            if (rs.next()) {
-                // Criar um objeto Usuario com os dados do resultado
-                usuario = new Usuario();
-                usuario.setId(rs.getInt("ID"));
-                usuario.setNome(rs.getString("Nome"));
-                usuario.setUsername(rs.getString("Username"));
-                usuario.setPassword(rs.getString("Password"));
-                
-                return usuario;
-            }
-            return null;
-
-        } catch (SQLException e) {
-            throw new DbException(e.getMessage());
-        }
-        finally {
-			DB.closeStatement(st);
-			DB.closeResultSet(rs);
-		}
-    }
-
-    @Override
     public List<Usuario> findAll() {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
@@ -92,20 +57,36 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
 
     @Override
     public void update(Usuario entity) {
-       
+
     }
 
     @Override
     public void delete(Integer id) {
-                
+
     }
 
     @Override
     public Usuario findById(Integer id) {
-        
+
         return null;
     }
 
-    
+    @Override
+    public boolean verifyUser(String user, String password) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("""
+                    SELECT * FROM usuarios WHERE Username = ? AND Password = ?
+                        """);
+            st.setString(1, user);
+            st.setString(2, password);
+            rs = st.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+
+        }
+    }
 
 }

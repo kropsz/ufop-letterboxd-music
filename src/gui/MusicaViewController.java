@@ -15,9 +15,7 @@ import model.dao.DaoFactory;
 import model.dao.interfaces.MusicaDAO;
 import model.entities.Musica;
 
-
-public class MusicaViewController implements Initializable{
-
+public class MusicaViewController implements Initializable {
 
     @FXML
     private TextField txtPesquisar;
@@ -33,14 +31,8 @@ public class MusicaViewController implements Initializable{
     private TableColumn<Musica, String> columnEstilo;
     @FXML
     private TableColumn<Musica, Integer> columnAnoLanc;
-    
+
     private MusicaDAO musicaDAO = DaoFactory.createMusicaDAO();
-
-    @FXML
-    public void searchButton(){
-        
-    }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,6 +45,21 @@ public class MusicaViewController implements Initializable{
 
         tabelaMusica.getItems().addAll(musicas);
 
+    }
+
+    @FXML
+    public void searchButton() {
+        String nomeMusica = txtPesquisar.getText();
         
+        List<Musica> musicasEncontradas = musicaDAO.findByMusica(nomeMusica);
+        exibirMusicasEncontradas(musicasEncontradas);
+    }
+
+    private void exibirMusicasEncontradas(List<Musica> musicas) {
+        // Limpar a tabela de músicas
+        tabelaMusica.getItems().clear();
+
+        // Adicionar as músicas encontradas à tabela
+        tabelaMusica.getItems().addAll(musicas);
     }
 }

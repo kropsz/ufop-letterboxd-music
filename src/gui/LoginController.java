@@ -19,7 +19,7 @@ import model.dao.DaoFactory;
 import model.dao.interfaces.UsuarioDAO;
 import model.entities.Usuario;
 
-public class LoginController implements Initializable {
+public class LoginController {
 
     @FXML
     private TextField txtUsername;
@@ -31,30 +31,30 @@ public class LoginController implements Initializable {
     private Button cadastrarButton;
     @FXML
     private Button loginButton;
+    @FXML
+    private Stage stage;
+
+    @FXML
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     private UsuarioDAO usuarioDAO = DaoFactory.createuUsuarioDAO();;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 
     public void loginButtonOnAction(ActionEvent e) {
         String username = txtUsername.getText();
         String password = txtPassoword.getText();
-        Usuario usuario = new Usuario(username, password);
-        usuarioDAO.findByUsername(username);
-        if (usuario.getUsername().equals(username) && usuario.getPassword().equals(password)) {
-            // Login bem-sucedido
-            loginMessageLabel.setText("Login com Sucesso ! ");{
+
+        // Lógica para verificar se os dados do usuário estão corretos
+        boolean loginValido = usuarioDAO.verifyUser(username, password);
+        if (loginValido) {
+            loginMessageLabel.setText("Login com Sucesso ! ");
             abrirJanelaMusicas();
-        } 
         } else {
-            // Login inválido
-            System.out.println("Usuário ou senha inválidos");
+            loginMessageLabel.setText("Login inválido");
         }
     }
-
 
     private void abrirJanelaMusicas() {
         try {
@@ -74,7 +74,6 @@ public class LoginController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void handleCadastrarButton() {

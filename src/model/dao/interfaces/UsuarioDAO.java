@@ -6,7 +6,7 @@ import model.entities.Usuario;
 
 public interface UsuarioDAO{
     Usuario findById(Integer id);
-    Usuario findByUsername(String user);
+    boolean verifyUser(String user, String password);
     List<Usuario> findAll();
     void create(Usuario entity);
     void update(Usuario entity);
