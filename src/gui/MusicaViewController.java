@@ -22,6 +22,8 @@ public class MusicaViewController implements Initializable {
     @FXML
     private Button buttonPesquisar;
     @FXML
+    private Button buttonAddSong;
+    @FXML
     private TableView<Musica> tabelaMusica;
     @FXML
     private TableColumn<Musica, String> columnTitulo;
@@ -33,6 +35,7 @@ public class MusicaViewController implements Initializable {
     private TableColumn<Musica, Integer> columnAnoLanc;
 
     private MusicaDAO musicaDAO = DaoFactory.createMusicaDAO();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,16 +53,12 @@ public class MusicaViewController implements Initializable {
     @FXML
     public void searchButton() {
         String nomeMusica = txtPesquisar.getText();
-        
         List<Musica> musicasEncontradas = musicaDAO.findByMusica(nomeMusica);
         exibirMusicasEncontradas(musicasEncontradas);
     }
 
     private void exibirMusicasEncontradas(List<Musica> musicas) {
-        // Limpar a tabela de músicas
         tabelaMusica.getItems().clear();
-
-        // Adicionar as músicas encontradas à tabela
         tabelaMusica.getItems().addAll(musicas);
     }
 }

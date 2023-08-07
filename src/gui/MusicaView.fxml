@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MusicaViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MusicaViewController">
    <children>
       <TableView fx:id="tabelaMusica" layoutX="14.0" layoutY="46.0" prefHeight="548.0" prefWidth="392.0">
         <columns>
@@ -17,9 +17,9 @@
             <TableColumn fx:id="columnAnoLanc" prefWidth="107.0" text="AnoLançamento" />
         </columns>
       </TableView>
-      <TextField fx:id="txtPesquisar" layoutX="33.0" layoutY="14.0" prefHeight="25.0" prefWidth="303.0" promptText="Pesquisar" />
+      <TextField fx:id="txtPesquisar" layoutX="33.0" layoutY="14.0" prefHeight="25.0" prefWidth="284.0" promptText="Pesquisar" />
       <FontAwesomeIcon iconName="SEARCH" layoutX="14.0" layoutY="30.0" />
-      <FontAwesomeIcon />
-      <Button fx:id="buttonPesquisar" layoutX="344.0" layoutY="13.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="12.0" prefWidth="81.0" text="Pesquisar" />
+      <Button fx:id="buttonPesquisar" layoutX="325.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="12.0" prefWidth="81.0" text="Pesquisar" />
+      <Button layoutX="428.0" layoutY="285.0" mnemonicParsing="false" text="ADICIONAR" />
    </children>
 </AnchorPane>

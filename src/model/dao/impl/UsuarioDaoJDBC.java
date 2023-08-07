@@ -66,10 +66,33 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
     }
 
     @Override
-    public Usuario findById(Integer id) {
+    public Usuario findByUsername(String username) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("""
+                SELECT * FROM usuarios WHERE Username = ?
+                    """);
+            st.setString(1, username);
+            rs = st.executeQuery();
+            if(rs.next()){
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("ID"));
+                usuario.setNome(rs.getString("Nome"));
+                usuario.setUsername(rs.getString("Username"));
+                usuario.setPassword(rs.getString("Password"));
+                return usuario;
+            }
 
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+        
         return null;
-    }
+        }
 
     @Override
     public boolean verifyUser(String user, String password) {

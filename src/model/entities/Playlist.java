@@ -1,24 +1,32 @@
 package model.entities;
 
 public class Playlist {
-    private Long id;
+    private Integer id;
     private String nome;
     private Usuario user;
+    private String desc;
 
     public Playlist() {
     }
 
-    public Playlist(Long id, String nome, Usuario user) {
+    public Playlist(Integer id, String nome, Usuario user, String desc) {
         this.id = id;
         this.nome = nome;
         this.user = user;
+        this.desc = desc;
     }
 
-    public Long getId() {
+    public Playlist(String nome, Usuario user, String desc){
+        this.nome = nome;
+        this.user = user;
+        this.desc = desc;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -36,6 +44,14 @@ public class Playlist {
 
     public void setUser(Usuario user) {
         this.user = user;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     @Override

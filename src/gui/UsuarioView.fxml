@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="164.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UsuarioViewController">
+   <children>
+      <FontAwesomeIcon iconName="USER" layoutX="14.0" layoutY="32.0" text="" wrappingWidth="17.428571701049805" />
+      <Label layoutX="39.0" layoutY="19.0" text="NOME DO USUARIO" />
+      <Button fx:id="buttonMusica" layoutX="12.0" layoutY="52.0" mnemonicParsing="false" onAction="#onButtonMusica" text="Musicas " />
+      <Button fx:id="buttonPlaylist" layoutX="17.0" layoutY="136.0" mnemonicParsing="false" onAction="#onButtonPlaylist" text="Playlist" />
+      <Button fx:id="buttonReviews" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="Reviews" />
+      <Button fx:id="buttonCriarPlaylist" layoutX="17.0" layoutY="95.0" mnemonicParsing="false" onAction="#onButtonCriarPlaylist" text="Criar Playlist" />
+   </children>
+</AnchorPane>
