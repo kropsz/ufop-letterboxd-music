@@ -20,6 +20,6 @@
       <TextField fx:id="txtPesquisar" layoutX="33.0" layoutY="14.0" prefHeight="25.0" prefWidth="284.0" promptText="Pesquisar" />
       <FontAwesomeIcon iconName="SEARCH" layoutX="14.0" layoutY="30.0" />
       <Button fx:id="buttonPesquisar" layoutX="325.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="12.0" prefWidth="81.0" text="Pesquisar" />
-      <Button layoutX="428.0" layoutY="285.0" mnemonicParsing="false" text="ADICIONAR" />
+      <Button fx:id="buttonAddSong" layoutX="428.0" layoutY="285.0" mnemonicParsing="false" text="ADICIONAR" />
    </children>
 </AnchorPane>

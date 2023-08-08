@@ -54,10 +54,11 @@ public class UsuarioViewController {
     private void abrirJanelaPlaylist() {
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/PlaylistView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/SeleçãoDePlaylist.fxml"));
             Parent root = loader.load();
-            PlaylistViewController controller = loader.getController();
+            SelecaoPlaylistController controller = loader.getController();
             controller.setUsuario(usuarioLogado);
+            controller.configureTableColumns();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();

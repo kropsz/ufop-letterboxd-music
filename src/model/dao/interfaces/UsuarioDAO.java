@@ -10,5 +10,5 @@ public interface UsuarioDAO{
     List<Usuario> findAll();
     void create(Usuario entity);
     void update(Usuario entity);
-    void delete(Integer id);
+    void delete(Usuario user);
 }

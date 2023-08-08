@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import database.DB;
@@ -31,29 +30,19 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("INSERT INTO usuarios (Nome, Username, Password) " +
-                    "VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                    "VALUES (?, ?, ?)");
             st.setString(1, usuario.getNome());
             st.setString(2, usuario.getUsername());
             st.setString(3, usuario.getPassword());
-            int linhasAfetadas = st.executeUpdate();
+            st.executeUpdate(); 
 
-            if (linhasAfetadas > 0) {
-                ResultSet rs = st.getGeneratedKeys();
-                if (rs.next()) {
-                    int id = rs.getInt(1);
-                    usuario.setId(id);
-                }
-                DB.closeResultSet(rs);
-            } else {
-                throw new DbException("Erro inesperado! Nenhuma linha foi afetada");
-            }
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
             DB.closeStatement(st);
         }
-
     }
+
 
     @Override
     public void update(Usuario entity) {
@@ -61,7 +50,7 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Usuario user) {
 
     }
 
@@ -77,7 +66,6 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
             rs = st.executeQuery();
             if(rs.next()){
                 Usuario usuario = new Usuario();
-                usuario.setId(rs.getInt("ID"));
                 usuario.setNome(rs.getString("Nome"));
                 usuario.setUsername(rs.getString("Username"));
                 usuario.setPassword(rs.getString("Password"));

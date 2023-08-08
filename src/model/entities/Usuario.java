@@ -1,7 +1,6 @@
 package model.entities;
 
 public class Usuario {
-    private Integer id;
     private String nome;
     private String username;
     private String password;
@@ -20,13 +19,6 @@ public class Usuario {
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -56,7 +48,7 @@ public class Usuario {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
         return result;
     }
 
@@ -69,12 +61,14 @@ public class Usuario {
         if (getClass() != obj.getClass())
             return false;
         Usuario other = (Usuario) obj;
-        if (id == null) {
-            if (other.id != null)
+        if (username == null) {
+            if (other.username != null)
                 return false;
-        } else if (!id.equals(other.id))
+        } else if (!username.equals(other.username))
             return false;
         return true;
     }
+
+    
 
 }

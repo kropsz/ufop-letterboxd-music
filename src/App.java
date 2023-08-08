@@ -14,10 +14,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            // Carrega o arquivo FXML da tela de login
             Parent root = FXMLLoader.load(getClass().getResource("/gui/Login.fxml"));
-
-            // Configura a cena e exibe a janela
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (IOException e) {
