@@ -8,20 +8,26 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PlaylistViewController">
-    <children>
-        <Label fx:id="txtPlaylistName" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="88.0" text="Text" />
-      <TableView fx:id="tabelaMusica" layoutX="14.0" layoutY="136.0" prefHeight="254.0" prefWidth="396.0">
+   <children>
+      <Label fx:id="txtNomePlaylist" layoutX="20.0" layoutY="21.0" prefHeight="25.0" prefWidth="387.0" text=" ">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabelaMusica" layoutX="18.0" layoutY="183.0" prefHeight="400.0" prefWidth="393.0">
          <columns>
             <TableColumn fx:id="columnTitulo" prefWidth="93.0" text="Titulo" />
             <TableColumn fx:id="columnArtista" prefWidth="86.0" text="Artista" />
             <TableColumn fx:id="columnEstilo" prefWidth="107.0" text="Estilo" />
-            <TableColumn fx:id="columnAnoLanc" prefWidth="107.0" text="AnoLançamento" />
+            <TableColumn fx:id="columnAnoLanc" prefWidth="102.0" text="AnoLançamento" />
          </columns>
       </TableView>
-      <Label fx:id="txtDescLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="34.0" prefHeight="50.0" prefWidth="405.0">
+      <Label fx:id="txtPlaylistName" layoutX="14.0" layoutY="21.0" prefHeight="12.0" prefWidth="104.0" text="Nome playlist">
          <font>
-            <Font size="28.0" />
-         </font></Label>
-      <Button fx:id="buttonAddSong" layoutX="21.0" layoutY="94.0" mnemonicParsing="false" onAction="#addSong" text="Add Song" />
-    </children>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="txtDescLabel" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="14.0" layoutY="52.0" prefHeight="67.0" prefWidth="296.0" text="Descrição da playlist" textAlignment="JUSTIFY" />
+      <Button fx:id="buttonAddSong" layoutX="18.0" layoutY="107.0" mnemonicParsing="false" onAction="#adicionarMusica" prefHeight="31.0" prefWidth="72.0" text="AddSong" />
+   </children>
 </AnchorPane>

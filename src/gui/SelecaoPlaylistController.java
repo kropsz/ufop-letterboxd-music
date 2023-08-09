@@ -63,16 +63,21 @@ public class SelecaoPlaylistController implements Initializable{
         }
     }
 
+    @FXML
     private void abrirCenaExibirPlaylist(Playlist playlist) {
     try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/PlaylistView.fxml"));
         Parent root = loader.load();
         PlaylistViewController controller = loader.getController();
+        if(playlist != null){
         controller.setPlaylist(playlist);
+        controller.configureTableColumns();
+        }
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+        
     } catch (IOException e) {
         e.printStackTrace();
     }
