@@ -55,7 +55,7 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("""
-                    "INSERT INTO musicas_playlists (PlaylistID, MusicaID) VALUES (?, ?)"
+                    INSERT INTO musicas_playlists (PlaylistID, MusicaID) VALUES (?, ?)
                         """);
             st.setInt(1, playlist.getId());
             st.setInt(2, musica.getId());
@@ -77,8 +77,10 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
             st = conn.prepareStatement("""
                              SELECT  m.ID, m.Titulo, m.Artista, m.Estilo, m.AnoLançamento
                              FROM musicas m
-                             INNER JOIN musicas_playlists mp ON m.ID = mp.MusicaID       
+                             INNER JOIN musicas_playlists mp ON m.ID = mp.MusicaID
+                             WHERE mp.PlaylistID = ?       
                     """);
+                    st.setInt(1, playlist.getId());
                     rs = st.executeQuery();
                     while(rs.next()){
                         Musica musica = new Musica();
@@ -162,7 +164,7 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
 
         try {
             st = conn.prepareStatement("""
-                SELECT m.* FROM musicas m JOIN musicas_playlists mp ON m.MusicaID = mp.MusicaID WHERE mp.PlaylistID = ?
+                SELECT * FROM musicas m JOIN musicas_playlists mp ON m.ID = mp.MusicaID WHERE mp.PlaylistID = ?
                     """);
             st.setInt(1, playlist.getId());
             rs = st.executeQuery();
