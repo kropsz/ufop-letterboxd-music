@@ -1,28 +1,28 @@
 package model.entities;
 
-public class Reviews {
-    private Long id;
+public class Review {
+    private Integer id;
     private Musica musica;
     private Usuario user;
     private String comentario;
-    private Integer classificao;
 
-    public Reviews() {
+
+    public Review() {
     }
 
-    public Reviews(Long id, Musica musica, Usuario user, String comentario, Integer classificao) {
+    public Review(Integer id, Musica musica, Usuario user, String comentario) {
         this.id = id;
         this.musica = musica;
         this.user = user;
         this.comentario = comentario;
-        this.classificao = classificao;
+
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -50,14 +50,6 @@ public class Reviews {
         this.comentario = comentario;
     }
 
-    public Integer getClassificao() {
-        return classificao;
-    }
-
-    public void setClassificao(Integer classificao) {
-        this.classificao = classificao;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -74,7 +66,7 @@ public class Reviews {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Reviews other = (Reviews) obj;
+        Review other = (Review) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

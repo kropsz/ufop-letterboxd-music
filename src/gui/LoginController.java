@@ -60,10 +60,10 @@ public class LoginController {
     private void abrirJanelaUsuario() {
         try {
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/UsuarioView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Usuario.fxml"));
+            UsuarioController usuarioController = new UsuarioController(usuarioLogado);
+            loader.setController(usuarioController);
             Parent root = loader.load();
-            UsuarioViewController usuarioController = loader.getController();
-            usuarioController.setUsuarioLogado(usuarioLogado);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();

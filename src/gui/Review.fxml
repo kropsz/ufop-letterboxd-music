@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="-6.0" prefHeight="78.0" prefWidth="656.0" style="-fx-background-color: black;">
+         <children>
+            <Text fill="WHITE" layoutX="38.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Músicas">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <TextField layoutX="380.0" layoutY="26.0" promptText="Pesquisar" style="-fx-background-color: Transparent; -fx-border-color: white;" />
+            <Button layoutX="542.0" layoutY="25.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="43.0" style="-fx-background-color: WHITE;" textFill="WHITE" />
+            <FontAwesomeIcon iconName="SEARCH" layoutX="556.0" layoutY="46.0" size="1.3em" text="" />
+         </children>
+      </Pane>
+      <Text layoutX="33.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Música">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="192.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artista">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="274.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estilo">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Line endX="201.0" layoutX="134.0" layoutY="132.0" startX="-100.0" />
+      <TableView fx:id="tableReview" layoutX="33.0" layoutY="154.0" prefHeight="200.0" prefWidth="557.0">
+        <columns>
+          <TableColumn fx:id="columnUsuario" prefWidth="171.0" text="Usuário" />
+          <TableColumn fx:id="columnReview" prefWidth="385.0" text="Review" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="72.0" fitWidth="151.0" layoutX="515.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" rotate="-161.6">
+         <image>
+            <Image url="@R.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

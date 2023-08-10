@@ -2,13 +2,13 @@ package model.dao.interfaces;
 
 import java.util.List;
 
-import model.entities.Reviews;
+import model.entities.Musica;
+import model.entities.Review;
+import model.entities.Usuario;
 
 public interface ReviewDAO{
-    List<Reviews> findByReviews(String Reviews);
-    Reviews findById(Integer id);
-    List<Reviews> findAll();
-    void create(Reviews Reviews);
-    void update(Reviews Reviews);
+    Review findByUsername(Usuario usuario);
+    List<Review> findAll(Musica musica);
+    void create(Review Reviews);
     void delete(Integer id);
 }

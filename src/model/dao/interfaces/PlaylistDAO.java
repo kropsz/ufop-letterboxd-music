@@ -12,7 +12,7 @@ public interface PlaylistDAO {
     Playlist salvarMusicaPlaylist(Playlist playlist, Musica musica);
     ObservableList<Musica> getMusicasDaPlaylist(Playlist playlist);
     List<Playlist> findAll();
-    List<Playlist> findAllByUsername(Usuario usuario);
+    ObservableList<Playlist> findAllByUsername(Usuario usuario);
     List<Musica> obterMusicasDaPlaylist(Playlist playlist);
     void create(Playlist entity);
     void update(Playlist entity);

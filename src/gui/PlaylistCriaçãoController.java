@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,9 +18,14 @@ public class PlaylistCriaçãoController {
     private Button buttonCriarPlaylist;
 
     private Usuario usuario;
-    
+    private ObservableList<Playlist> playlists;
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public void inicializar(ObservableList<Playlist> playlists) {
+        this.playlists = playlists;
     }
 
     PlaylistDAO playlistDAO = DaoFactory.createPlaylistDAO();
@@ -32,8 +38,7 @@ public class PlaylistCriaçãoController {
 
         Playlist playlist = new Playlist(nome, usuario, desc);
         playlistDAO.create(playlist);
-
         txtPlaylistName.getScene().getWindow().hide();
-
+        playlists.add(playlist);
     }
 }

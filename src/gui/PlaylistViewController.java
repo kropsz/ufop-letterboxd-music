@@ -1,31 +1,34 @@
 package gui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.dao.DaoFactory;
+import model.dao.interfaces.MusicaDAO;
 import model.dao.interfaces.PlaylistDAO;
 import model.entities.Musica;
 import model.entities.Playlist;
 
 public class PlaylistViewController implements Initializable {
     @FXML
-    private TableView<Musica> tabelaMusica;
+    private TableView<Musica> tablePlaylistMusicas;
+    @FXML
+    private TableView<Musica> tableMusicas;
+    @FXML
+    private TableColumn<Musica, String> columnMusicTitulo;
+    @FXML
+    private TableColumn<Musica, String> columnMusicArtista;
     @FXML
     private TableColumn<Musica, String> columnTitulo;
     @FXML
@@ -35,9 +38,11 @@ public class PlaylistViewController implements Initializable {
     @FXML
     private TableColumn<Musica, Integer> columnAnoLanc;
     @FXML
-    private Label txtPlaylistName;
+    private Text txtPlaylistName;
     @FXML
-    private Label txtDescLabel;
+    private Text txtDescLabel;
+    @FXML
+    private TextField txtPesquisar;
     @FXML
     private Button buttonAddSong;
 
@@ -48,14 +53,19 @@ public class PlaylistViewController implements Initializable {
     }
 
     private PlaylistDAO playlistDAO = DaoFactory.createPlaylistDAO();
+    private MusicaDAO musicaDAO = DaoFactory.createMusicaDAO();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        columnMusicTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        columnMusicArtista.setCellValueFactory(new PropertyValueFactory<>("artista"));
         columnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         columnArtista.setCellValueFactory(new PropertyValueFactory<>("artista"));
         columnEstilo.setCellValueFactory(new PropertyValueFactory<>("estilo"));
         columnAnoLanc.setCellValueFactory(new PropertyValueFactory<>("anoLanc"));
         configureTableColumns();
+        List<Musica> musicas = musicaDAO.findAll();
+        tableMusicas.getItems().addAll(musicas);
     }
 
     public void configureTableColumns() {
@@ -64,37 +74,46 @@ public class PlaylistViewController implements Initializable {
             txtPlaylistName.setText(playlist.getNome());
             txtDescLabel.setText(playlist.getDesc());
             List<Musica> musicas = playlistDAO.obterMusicasDaPlaylist(playlist);
-            tabelaMusica.getItems().addAll(musicas);
+            tablePlaylistMusicas.getItems().addAll(musicas);
         }
     }
 
     @FXML
     private void adicionarMusica(){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AdicionarMusica.fxml"));
-            Parent root = loader.load();
-
-            
-            AdicionarMusicaController adicionarMusicaController = loader.getController();
-            adicionarMusicaController.setPlaylist(playlist);
-
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Selecionar Músicas");
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-
-            // Atualizar a tabela da playlist do usuário após a janela ser fechada
             atualizarTabelaPlaylistUsuario();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void atualizarTabelaPlaylistUsuario() {
         if (playlist != null) {
             ObservableList<Musica> musicasDaPlaylist = playlistDAO.getMusicasDaPlaylist(playlist);
-            tabelaMusica.setItems(musicasDaPlaylist);
+            tablePlaylistMusicas.setItems(musicasDaPlaylist);
         }
     }
+
+    @FXML
+    public void searchButton() {
+        String nomeMusica = txtPesquisar.getText();
+        List<Musica> musicasEncontradas = musicaDAO.findByMusica(nomeMusica);
+        exibirMusicasEncontradas(musicasEncontradas);
+    }
+
+    private void exibirMusicasEncontradas(List<Musica> musicas) {
+        tableMusicas.getItems().clear();
+        tableMusicas.getItems().addAll(musicas);
+    }
+
+    @FXML
+    private void onHandleAdicionarMusica() {
+        Musica musicaSelecionada = tableMusicas.getSelectionModel().getSelectedItem();
+        if (musicaSelecionada != null && playlist != null) {
+            playlist = playlistDAO.salvarMusicaPlaylist(playlist, musicaSelecionada);
+            closeWindow();
+        }
+    }
+
+    private void closeWindow() {
+        Stage stage = (Stage) buttonAddSong.getScene().getWindow();
+        stage.close();
+    }
+
 }

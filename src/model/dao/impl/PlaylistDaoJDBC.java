@@ -24,8 +24,8 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
     }
 
     @Override
-    public List<Playlist> findAllByUsername(Usuario usuario) {
-        List<Playlist> playlists = new ArrayList<>();
+    public ObservableList<Playlist> findAllByUsername(Usuario usuario) {
+        ObservableList<Playlist> playlists = FXCollections.observableArrayList();
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
