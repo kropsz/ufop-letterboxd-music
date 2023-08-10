@@ -1,80 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
    <children>
-      <AnchorPane layoutX="-17.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #303234;" />
-      <AnchorPane layoutX="492.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: white;">
+      <ImageView fitHeight="400.0" fitWidth="421.0" layoutX="226.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image1Scne.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="400.0" prefWidth="226.0" style="-fx-background-color: black;">
          <children>
-            <Label layoutX="40.0" layoutY="155.0" text="Entre na sua conta">
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="28.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entrar">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtUsername" alignment="TOP_LEFT" layoutX="39.0" layoutY="159.0" promptText="Username" />
+            <Button fx:id="loginButton" layoutX="24.0" layoutY="276.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-border-color: white; -fx-background-color: transparent;" stylesheets="@Economia/trabalho-economia/botaocss.css" text="Logar" textFill="WHITE" />
+            <Button fx:id="cadastrarButton" layoutX="121.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleCadastrarButton" style="-fx-background-color: transparent; -fx-border-color: white;" text="Cadastrar" textFill="WHITE" />
+            <Text fill="WHITE" layoutX="88.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ou">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="txtPassoword" layoutX="38.0" layoutY="214.0" promptText="Password" />
+            <Label fx:id="loginMessageLabel" layoutX="22.0" layoutY="251.0" prefHeight="17.0" prefWidth="140.0" textFill="#00e1ff" />
+            <Label layoutX="29.0" layoutY="14.0" prefHeight="62.0" prefWidth="288.0" text="Bem Vindo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="35.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="81.0" text="Bem Vindo">
-               <font>
-                  <Font name="System Bold" size="51.0" />
-               </font>
-            </Label>
-            <Label layoutX="149.0" layoutY="373.0" text="Ou" />
-            <FontAwesomeIcon iconName="LOCK" layoutX="14.0" layoutY="281.0" size="1.5em" text="" />
-            <FontAwesomeIcon iconName="USER" layoutX="12.0" layoutY="238.0" size="1.5em" />
-            <TextField fx:id="txtUsername" layoutX="40.0" layoutY="219.0" prefHeight="25.0" prefWidth="234.0" promptText="Username" />
-            <PasswordField fx:id="txtPassoword" layoutX="40.0" layoutY="262.0" prefHeight="25.0" prefWidth="234.0" promptText="Passwrord" />
-            <Label fx:id="loginMessageLabel" layoutX="42.0" layoutY="292.0" prefHeight="17.0" prefWidth="234.0" textFill="#00ffe9">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Button fx:id="loginButton" layoutX="40.0" layoutY="327.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Login" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="cadastrarButton" layoutX="40.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleCadastrarButton" prefHeight="35.0" prefWidth="234.0" style="-fx-background-color: #303234;" text="Cadastre-se" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Button>
+            <FontAwesomeIcon fill="WHITE" iconName="USER" layoutX="15.0" layoutY="177.0" size="1.5em" />
+            <FontAwesomeIcon fill="WHITE" iconName="LOCK" layoutX="14.0" layoutY="235.0" size="1.5em" text="" />
          </children>
-      </AnchorPane>
+      </Pane>
    </children>
 </AnchorPane>

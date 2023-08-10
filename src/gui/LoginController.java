@@ -77,7 +77,7 @@ public class LoginController {
     @FXML
     private void handleCadastrarButton() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/CadastroView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Cadastro.fxml"));
             Parent root = loader.load(); 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
