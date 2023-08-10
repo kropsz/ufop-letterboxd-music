@@ -188,4 +188,26 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
         return musicasDaPlaylist;
     }
 
+    @Override
+    public int countPlaylistsByUsuario(Usuario usuario) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("""
+                    SELECT COUNT(*) AS total FROM playlists WHERE Username = ?
+                    """);
+            st.setString(1, usuario.getUsername());
+            rs = st.executeQuery();
+            if( rs.next()){
+                return rs.getInt("total");
+            }
+            return 0;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally{
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
+
 }

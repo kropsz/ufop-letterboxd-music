@@ -22,14 +22,11 @@
                   <Font size="38.0" />
                </font>
             </Text>
-            <Text fx:id="txtPlaylists" fill="WHITE" layoutX="399.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="X" />
-            <Text fill="WHITE" layoutX="380.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Playlists" />
-            <Text fill="WHITE" layoutX="454.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favoritas" />
-            <Text fill="WHITE" layoutX="538.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reviews" />
-            <Text fx:id="txtFavoritas" fill="WHITE" layoutX="474.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="X" />
-            <Text fx:id="txtReviews" fill="WHITE" layoutX="555.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="X" />
-            <Separator layoutX="438.0" layoutY="26.0" opacity="0.26" orientation="VERTICAL" prefHeight="51.0" prefWidth="8.0" />
-            <Separator layoutX="521.0" layoutY="25.0" opacity="0.26" orientation="VERTICAL" prefHeight="51.0" prefWidth="8.0" />
+            <Text fx:id="txtTotalPlaylists" fill="WHITE" layoutX="475.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="X" />
+            <Text fill="WHITE" layoutX="458.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Playlists" />
+            <Text fill="WHITE" layoutX="520.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reviews" />
+            <Text fx:id="txtTotalReviews" fill="WHITE" layoutX="537.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="X" />
+            <Separator layoutX="506.0" layoutY="30.0" opacity="0.26" orientation="VERTICAL" prefHeight="51.0" prefWidth="8.0" />
          </children>
       </Pane>
       <Pane layoutX="-5.0" layoutY="89.0" opacity="0.22" prefHeight="17.0" prefWidth="606.0" style="-fx-background-color: black;" />
@@ -65,6 +62,7 @@
                      </font>
                   </Text>
                   <Button fx:id="buttonCriarPlaylist" layoutX="283.0" layoutY="19.0" mnemonicParsing="false" onAction="#onButtonCriarPlaylist" style="-fx-background-color: black;" text="Criar Playlist" textFill="WHITE" />
+                  <Button fx:id="buttonSelecionarPlaylist" layoutX="302.0" layoutY="306.0" mnemonicParsing="false" onAction="#onSelecionarButtonClick" style="-fx-background-color: black;" text="Selecionar" textFill="WHITE" />
                </children>
             </AnchorPane>
          </items>

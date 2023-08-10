@@ -18,6 +18,12 @@ public class Review {
 
     }
 
+    public Review(Musica musica, Usuario user, String comentario){
+        this.musica = musica;
+        this.user = user;
+        this.comentario = comentario;
+    }
+
     public Integer getId() {
         return id;
     }

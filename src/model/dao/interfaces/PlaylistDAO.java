@@ -11,6 +11,7 @@ public interface PlaylistDAO {
     Playlist findById(Integer id);
     Playlist salvarMusicaPlaylist(Playlist playlist, Musica musica);
     ObservableList<Musica> getMusicasDaPlaylist(Playlist playlist);
+    int countPlaylistsByUsuario(Usuario usuario);
     List<Playlist> findAll();
     ObservableList<Playlist> findAllByUsername(Usuario usuario);
     List<Musica> obterMusicasDaPlaylist(Playlist playlist);

@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import model.dao.DaoFactory;
 import model.dao.interfaces.MusicaDAO;
 import model.dao.interfaces.PlaylistDAO;
+import model.dao.interfaces.ReviewDAO;
 import model.entities.Musica;
 import model.entities.Playlist;
 import model.entities.Usuario;
@@ -35,17 +36,17 @@ public class UsuarioController implements Initializable {
     @FXML
     private Button buttonReview;
     @FXML
+    private Button buttonSelecionarPlaylist;
+    @FXML
     private TextField txtPesquisar;
     @FXML
     private Text txtNomeUsuario;
     @FXML
     private Text txtInfoPlaylists;
     @FXML
-    private Text txtPlaylists;
+    private Text txtTotalPlaylists;
     @FXML
-    private Text txtFavoritas;
-    @FXML
-    private Text txtReviews;
+    private Text txtTotalReviews;
     @FXML
     private TableView<Musica> tabelaMusica;
     @FXML
@@ -61,6 +62,7 @@ public class UsuarioController implements Initializable {
 
     private MusicaDAO musicaDAO = DaoFactory.createMusicaDAO();
     private PlaylistDAO playlistDAO = DaoFactory.createPlaylistDAO();
+    private ReviewDAO reviewDAO = DaoFactory.createReviewDAO();
 
     private Usuario usuarioLogado;
 
@@ -73,6 +75,7 @@ public class UsuarioController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configureTableColumns();
+        atualizarTotais();
         
     }
 
@@ -86,7 +89,16 @@ public class UsuarioController implements Initializable {
             List<Playlist> playlist = playlistDAO.findAllByUsername(usuarioLogado);
             tablePlaylist.getItems().addAll(playlist);
             tabelaMusica.getItems().addAll(musicas);
+            txtNomeUsuario.setText(usuarioLogado.getUsername());
         }
+    }
+
+    private void atualizarTotais() {
+        int totalPlaylists = playlistDAO.countPlaylistsByUsuario(usuarioLogado);
+        int totalReviews = reviewDAO.countReviewsByUsuario(usuarioLogado);
+
+        txtTotalPlaylists.setText(String.valueOf(totalPlaylists));
+        txtTotalReviews.setText(String.valueOf(totalReviews));
     }
 
     @FXML
@@ -116,7 +128,7 @@ public class UsuarioController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.showAndWait();
-
+            atualizarTotais();
             atualizarTabelaPlaylistUsuario();
         } catch (IOException e) {
             e.printStackTrace();
@@ -169,12 +181,14 @@ public class UsuarioController implements Initializable {
         try{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Review.fxml"));
         ReviewController controller = new ReviewController(musica);
+        controller.setUsuario(usuarioLogado);
         loader.setController(controller);
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.show();
+        stage.showAndWait();
+        atualizarTotais();
     }catch(IOException e){
         e.printStackTrace();
         }

@@ -16,32 +16,32 @@
    <children>
       <Pane layoutX="-6.0" prefHeight="78.0" prefWidth="656.0" style="-fx-background-color: black;">
          <children>
-            <Text fill="WHITE" layoutX="38.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Músicas">
+            <Text fill="WHITE" layoutX="38.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reviews">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <TextField layoutX="380.0" layoutY="26.0" promptText="Pesquisar" style="-fx-background-color: Transparent; -fx-border-color: white;" />
-            <Button layoutX="542.0" layoutY="25.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="43.0" style="-fx-background-color: WHITE;" textFill="WHITE" />
+            <TextField fx:id="txtPesquisar" layoutX="380.0" layoutY="26.0" promptText="Pesquisar" style="-fx-background-color: Transparent; -fx-border-color: white;" />
+            <Button fx:id="buttonPesquisar" layoutX="542.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="27.0" prefWidth="43.0" style="-fx-background-color: WHITE;" textFill="WHITE" />
             <FontAwesomeIcon iconName="SEARCH" layoutX="556.0" layoutY="46.0" size="1.3em" text="" />
          </children>
       </Pane>
-      <Text layoutX="33.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Música">
+      <Text fx:id="txtNomeMusica" layoutX="34.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Música" wrappingWidth="134.81689453125">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Text layoutX="192.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artista">
+      <Text fx:id="txtArtista" layoutX="221.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artista">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Text layoutX="274.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estilo">
+      <Text fx:id="txtEstilo" layoutX="333.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estilo">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Line endX="201.0" layoutX="134.0" layoutY="132.0" startX="-100.0" />
+      <Line endX="242.49652099609375" layoutX="134.0" layoutY="132.0" startX="-100.0" />
       <TableView fx:id="tableReview" layoutX="33.0" layoutY="154.0" prefHeight="200.0" prefWidth="557.0">
         <columns>
           <TableColumn fx:id="columnUsuario" prefWidth="171.0" text="Usuário" />
@@ -53,5 +53,6 @@
             <Image url="@R.png" />
          </image>
       </ImageView>
+      <Button fx:id="buttonCriarReview" layoutX="425.0" layoutY="106.0" mnemonicParsing="false" onAction="#abrirJanelaCriarReview" style="-fx-background-color: black;" text="Criar Review" textFill="WHITE" />
    </children>
 </Pane>
