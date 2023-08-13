@@ -39,7 +39,7 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
             while (rs.next()) {
                 int id = rs.getInt("ID");
                 String nome = rs.getString("Nome");
-                String desc = rs.getString("Descriacao");
+                String desc = rs.getString("Descricao");
                 Playlist playlist = new Playlist(id, nome, usuario, desc);
                 playlists.add(playlist);
             }
@@ -106,7 +106,7 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("""
-                        INSERT INTO playlists(Nome, Username, Descriacao)
+                        INSERT INTO playlists(Nome, Username, Descricao)
                         VALUES (?, ?, ?)
                     """, Statement.RETURN_GENERATED_KEYS);
             st.setString(1, playlist.getNome());
@@ -272,6 +272,83 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
         } finally {
             DB.closeStatement(st);
         }
+    }
+
+    @Override
+    public List<Playlist> findAll(Usuario usuario) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List<Playlist> playlists = new ArrayList<>();
+
+        try {
+            st = conn.prepareStatement(
+                    """
+                            SELECT p.ID, p.Nome, p.Descricao, u.Username, u.Nome AS UserNome FROM playlists p
+                            JOIN usuarios u ON p.Username = u.Username
+                            WHERE p.Username != ?
+                            """);
+            st.setString(1, usuario.getUsername());
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Playlist playlist = new Playlist();
+                playlist.setId(rs.getInt("ID"));
+                playlist.setNome(rs.getString("Nome"));
+                playlist.setDesc(rs.getString("Descricao"));
+                Usuario owner = new Usuario();
+                owner.setUsername(rs.getString("Username"));
+                owner.setNome(rs.getString("Nome"));
+                playlist.setUser(owner);
+
+                playlists.add(playlist);
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+
+        return playlists;
+    }
+
+    @Override
+    public List<Playlist> findBySearch(String nomeUsername) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List<Playlist> playlists = new ArrayList<>();
+
+        try {
+            st = conn.prepareStatement(
+                    """
+                            SELECT p.ID, p.Nome, u.Username, u.Nome AS UserNome FROM playlists p
+                            JOIN usuarios u ON p.Username = u.Username
+                            WHERE u.Username = ?
+                            """);
+            st.setString(1, nomeUsername);
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Playlist playlist = new Playlist();
+                playlist.setId(rs.getInt("ID"));
+                playlist.setNome(rs.getString("Nome"));
+                playlist.setDesc(rs.getString("Descricao"));
+                Usuario owner = new Usuario();
+                owner.setUsername(rs.getString("Username"));
+                owner.setNome(rs.getString("UserNome"));
+
+                playlist.setUser(owner);
+
+                playlists.add(playlist);
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+
+        return playlists;
     }
 
 }

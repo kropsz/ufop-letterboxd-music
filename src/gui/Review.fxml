@@ -24,22 +24,12 @@
             <FontAwesomeIcon iconName="SEARCH" layoutX="556.0" layoutY="46.0" size="1.3em" text="" />
          </children>
       </Pane>
-      <Text fx:id="txtNomeMusica" layoutX="34.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Música" wrappingWidth="134.81689453125">
+      <Text fx:id="txtNomeMusica" layoutX="32.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Música" wrappingWidth="353.81689453125">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Text fx:id="txtArtista" layoutX="221.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artista">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Text>
-      <Text fx:id="txtEstilo" layoutX="333.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estilo">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Text>
-      <Line endX="242.49652099609375" layoutX="134.0" layoutY="132.0" startX="-100.0" />
+      <Line endX="242.49652099609375" layoutX="141.0" layoutY="130.0" startX="-107.0" />
       <TableView fx:id="tableReview" layoutX="33.0" layoutY="154.0" prefHeight="200.0" prefWidth="557.0">
         <columns>
           <TableColumn fx:id="columnUsuario" prefWidth="171.0" text="Usuário" />

@@ -43,6 +43,8 @@ public class UsuarioController implements Initializable {
     @FXML
     private Button buttonSelecionarPlaylist;
     @FXML
+    private Button buttonVerOutrasPlaylist;
+    @FXML
     private TextField txtPesquisar;
     @FXML
     private Text txtNomeUsuario;
@@ -145,7 +147,7 @@ public class UsuarioController implements Initializable {
     }
 
     @FXML
-    private void onHandleDeletarReview() {
+    private void onHandleDeletarPlaylist() {
         Playlist playlistSelecionada = tablePlaylist.getSelectionModel().getSelectedItem();
         if (playlistSelecionada != null) {
             if (playlistSelecionada.getUser().getUsername().equals(usuarioLogado.getUsername())) {
@@ -224,6 +226,29 @@ public class UsuarioController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Review.fxml"));
             ReviewController controller = new ReviewController(musica);
+            controller.setUsuario(usuarioLogado);
+            loader.setController(controller);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+            atualizarTotais();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void onSelecionarOutrasPlaylists() {
+        abrirOutrasPlaylists();
+    }
+
+    @FXML
+    private void abrirOutrasPlaylists() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/PlaylistsUsers.fxml"));
+            PlaylistUsersController controller = new PlaylistUsersController();
             controller.setUsuario(usuarioLogado);
             loader.setController(controller);
             Parent root = loader.load();

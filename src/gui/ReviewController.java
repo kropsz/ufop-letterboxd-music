@@ -36,10 +36,6 @@ public class ReviewController implements Initializable {
     @FXML
     private Text txtNomeMusica;
     @FXML
-    private Text txtArtista;
-    @FXML
-    private Text txtEstilo;
-    @FXML
     private TextField txtPesquisar;
     @FXML
     private Button buttonPesquisar;
@@ -93,8 +89,6 @@ public class ReviewController implements Initializable {
         List<Review> reviews = reviewDAO.findAll(musica);
         tableReview.getItems().addAll(reviews);
         txtNomeMusica.setText(musica.getTitulo());
-        txtArtista.setText(musica.getArtista());
-        txtEstilo.setText(musica.getEstilo());
     }
 
     @FXML

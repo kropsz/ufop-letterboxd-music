@@ -63,7 +63,8 @@
                   </Text>
                   <Button fx:id="buttonCriarPlaylist" layoutX="283.0" layoutY="19.0" mnemonicParsing="false" onAction="#onButtonCriarPlaylist" style="-fx-background-color: black;" text="Criar Playlist" textFill="WHITE" />
                   <Button fx:id="buttonSelecionarPlaylist" layoutX="14.0" layoutY="300.0" mnemonicParsing="false" onAction="#onSelecionarButtonClick" style="-fx-background-color: black;" text="Selecionar" textFill="WHITE" />
-                  <Button fx:id="buttonRemoverPlaylist" layoutX="274.0" layoutY="300.0" mnemonicParsing="false" onAction="#onHandleDeletarReview" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: black;" text="Remover Playlist" textFill="WHITE" />
+                  <Button fx:id="buttonRemoverPlaylist" layoutX="95.0" layoutY="300.0" mnemonicParsing="false" onAction="#onHandleDeletarPlaylist" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: black;" text="Remover Playlist" textFill="WHITE" />
+                  <Button fx:id="buttonVerOutrasPlaylist" layoutX="297.0" layoutY="300.0" mnemonicParsing="false" onAction="#onSelecionarOutrasPlaylists" style="-fx-background-color: black;" text="Outras Playlists" textFill="WHITE" />
                </children>
             </AnchorPane>
          </items>

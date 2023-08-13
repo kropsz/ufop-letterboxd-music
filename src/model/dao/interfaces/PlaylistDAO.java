@@ -27,4 +27,8 @@ public interface PlaylistDAO {
     void deletePlaylist(Playlist playlist, Usuario user);
 
     void deletarMusicaDaPlaylist(int playlistId, int musicaId);
+
+    List<Playlist> findAll(Usuario usuario);
+
+    List<Playlist> findBySearch(String username);
 }

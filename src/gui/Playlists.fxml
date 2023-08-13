@@ -52,7 +52,7 @@
                         <TableColumn fx:id="columnAnoLanc" prefWidth="73.0" text="AnoLançamento" />
                     </columns>
                   </TableView>
-                  <Text fx:id="txtPlaylistName" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Playlist" wrappingWidth="259.123046875">
+                  <Text fx:id="txtPlaylistName" layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome da Playlist" wrappingWidth="365.0">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>
