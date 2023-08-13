@@ -78,34 +78,27 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
                              SELECT  m.ID, m.Titulo, m.Artista, m.Estilo, m.AnoLançamento
                              FROM musicas m
                              INNER JOIN musicas_playlists mp ON m.ID = mp.MusicaID
-                             WHERE mp.PlaylistID = ?       
+                             WHERE mp.PlaylistID = ?
                     """);
-                    st.setInt(1, playlist.getId());
-                    rs = st.executeQuery();
-                    while(rs.next()){
-                        Musica musica = new Musica();
-                        musica.setId(rs.getInt("ID"));
-                        musica.setTitulo(rs.getString("Titulo"));
-                        musica.setArtista(rs.getString("Artista"));
-                        musica.setEstilo(rs.getString("Estilo"));
-                        musica.setAnoLanc(rs.getInt("AnoLançamento"));
-                        musicas.add(musica);
+            st.setInt(1, playlist.getId());
+            rs = st.executeQuery();
+            while (rs.next()) {
+                Musica musica = new Musica();
+                musica.setId(rs.getInt("ID"));
+                musica.setTitulo(rs.getString("Titulo"));
+                musica.setArtista(rs.getString("Artista"));
+                musica.setEstilo(rs.getString("Estilo"));
+                musica.setAnoLanc(rs.getInt("AnoLançamento"));
+                musicas.add(musica);
 
-                    }
+            }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }
-        finally{
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
         return musicas;
-    }
-
-    @Override
-    public Playlist findById(Integer id) {
-
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
@@ -139,24 +132,6 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
     }
 
     @Override
-    public void update(Playlist playlist) {
-
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public void delete(Integer id) {
-
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public List<Playlist> findAll() {
-
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
-    @Override
     public ObservableList<Musica> getMusicasDaPlaylist(Playlist playlist) {
         ObservableList<Musica> musicasDaPlaylist = FXCollections.observableArrayList();
         PreparedStatement st = null;
@@ -164,23 +139,23 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
 
         try {
             st = conn.prepareStatement("""
-                SELECT * FROM musicas m JOIN musicas_playlists mp ON m.ID = mp.MusicaID WHERE mp.PlaylistID = ?
-                    """);
+                    SELECT * FROM musicas m JOIN musicas_playlists mp ON m.ID = mp.MusicaID WHERE mp.PlaylistID = ?
+                        """);
             st.setInt(1, playlist.getId());
             rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Musica musica = new Musica();
                 musica.setId(rs.getInt("ID"));
+                musica.setTitulo(rs.getString("Titulo"));
                 musica.setArtista(rs.getString("Artista"));
                 musica.setEstilo(rs.getString("Estilo"));
                 musica.setAnoLanc(rs.getInt("AnoLançamento"));
                 musicasDaPlaylist.add(musica);
 
-            }        
+            }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }
-        finally{
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
@@ -198,14 +173,103 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
                     """);
             st.setString(1, usuario.getUsername());
             rs = st.executeQuery();
-            if( rs.next()){
+            if (rs.next()) {
                 return rs.getInt("total");
             }
             return 0;
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        } finally{
+        } finally {
             DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
+
+    @Override
+    public boolean verificarMusica(Musica musica, Playlist playlist) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("""
+                    SELECT COUNT(*) AS total FROM musicas_playlists WHERE MusicaID = ? AND PlaylistID = ?
+                        """);
+            st.setInt(1, musica.getId());
+            st.setInt(2, playlist.getId());
+            rs = st.executeQuery();
+            if (rs.next()) {
+                int total = rs.getInt("total");
+                return total > 0;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
+    }
+
+    @Override
+    public void deletePlaylist(Playlist playlist, Usuario user) {
+        PreparedStatement stMusica = null;
+        PreparedStatement stPlaylist = null;
+        try {
+            stMusica = conn.prepareStatement("DELETE FROM musicas_playlists WHERE PlaylistID = ?");
+            stMusica.setInt(1, playlist.getId());
+            stMusica.executeUpdate();
+
+            stPlaylist = conn.prepareStatement("""
+                        DELETE FROM playlists WHERE ID = ? AND Username = ?
+                    """);
+            stPlaylist.setInt(1, playlist.getId());
+            stPlaylist.setString(2, user.getUsername());
+            int rowsAffected = stPlaylist.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new DbException("Não foi possível deletar a playlist.");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(stPlaylist);
+            DB.closeStatement(stMusica);
+        }
+    }
+
+    @Override
+    public boolean verificarPropriedadeDaPlaylist(Playlist playlist, Usuario usuario) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("SELECT ID FROM playlists WHERE ID = ? AND Username = ?");
+            st.setInt(1, playlist.getId());
+            st.setString(2, usuario.getUsername());
+            rs = st.executeQuery();
+
+            return rs.next();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+
+        }
+    }
+
+    @Override
+    public void deletarMusicaDaPlaylist(int playlistId, int musicaId) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("DELETE FROM musicas_playlists WHERE PlaylistID = ? AND MusicaID = ?");
+            st.setInt(1, playlistId);
+            st.setInt(2, musicaId);
+            int rowsAffected = st.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new DbException("Não foi possível excluir a música da playlist.");
+            }
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
             DB.closeStatement(st);
         }
     }

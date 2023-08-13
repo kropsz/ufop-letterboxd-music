@@ -19,7 +19,6 @@ public class Usuario {
         this.password = password;
     }
 
-
     public String getUsername() {
         return username;
     }
@@ -68,7 +67,5 @@ public class Usuario {
             return false;
         return true;
     }
-
-    
 
 }

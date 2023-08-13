@@ -8,14 +8,23 @@ import model.entities.Playlist;
 import model.entities.Usuario;
 
 public interface PlaylistDAO {
-    Playlist findById(Integer id);
     Playlist salvarMusicaPlaylist(Playlist playlist, Musica musica);
+
     ObservableList<Musica> getMusicasDaPlaylist(Playlist playlist);
+
     int countPlaylistsByUsuario(Usuario usuario);
-    List<Playlist> findAll();
+
+    boolean verificarMusica(Musica musica, Playlist playlist);
+
+    boolean verificarPropriedadeDaPlaylist(Playlist playlist, Usuario user);
+
     ObservableList<Playlist> findAllByUsername(Usuario usuario);
+
     List<Musica> obterMusicasDaPlaylist(Playlist playlist);
+
     void create(Playlist entity);
-    void update(Playlist entity);
-    void delete(Integer id);
+
+    void deletePlaylist(Playlist playlist, Usuario user);
+
+    void deletarMusicaDaPlaylist(int playlistId, int musicaId);
 }

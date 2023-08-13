@@ -6,7 +6,6 @@ public class Review {
     private Usuario user;
     private String comentario;
 
-
     public Review() {
     }
 
@@ -18,7 +17,7 @@ public class Review {
 
     }
 
-    public Review(Musica musica, Usuario user, String comentario){
+    public Review(Musica musica, Usuario user, String comentario) {
         this.musica = musica;
         this.user = user;
         this.comentario = comentario;

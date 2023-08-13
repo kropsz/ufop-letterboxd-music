@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import database.DB;
 import database.DbException;
@@ -20,12 +19,6 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
     }
 
     @Override
-    public List<Usuario> findAll() {
-
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
-    @Override
     public void create(Usuario usuario) {
         PreparedStatement st = null;
         try {
@@ -34,24 +27,13 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
             st.setString(1, usuario.getNome());
             st.setString(2, usuario.getUsername());
             st.setString(3, usuario.getPassword());
-            st.executeUpdate(); 
+            st.executeUpdate();
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
             DB.closeStatement(st);
         }
-    }
-
-
-    @Override
-    public void update(Usuario entity) {
-
-    }
-
-    @Override
-    public void delete(Usuario user) {
-
     }
 
     @Override
@@ -60,11 +42,11 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
         ResultSet rs = null;
         try {
             st = conn.prepareStatement("""
-                SELECT * FROM usuarios WHERE Username = ?
-                    """);
+                    SELECT * FROM usuarios WHERE Username = ?
+                        """);
             st.setString(1, username);
             rs = st.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Usuario usuario = new Usuario();
                 usuario.setNome(rs.getString("Nome"));
                 usuario.setUsername(rs.getString("Username"));
@@ -78,9 +60,9 @@ public class UsuarioDaoJDBC implements UsuarioDAO {
             DB.closeStatement(st);
             DB.closeResultSet(rs);
         }
-        
+
         return null;
-        }
+    }
 
     @Override
     public boolean verifyUser(String user, String password) {

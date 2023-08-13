@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -12,7 +13,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,8 +29,8 @@ import model.entities.Musica;
 import model.entities.Review;
 import model.entities.Usuario;
 
-public class ReviewController implements Initializable{
-    
+public class ReviewController implements Initializable {
+
     @FXML
     private Text txtMusica;
     @FXML
@@ -43,6 +46,8 @@ public class ReviewController implements Initializable{
     @FXML
     private Button buttonCriarReview;
     @FXML
+    private Button buttonDeletarReview;
+    @FXML
     private TableView<Review> tableReview;
     @FXML
     private TableColumn<Review, Usuario> columnUsuario;
@@ -52,7 +57,7 @@ public class ReviewController implements Initializable{
     private Musica musica;
     private Usuario usuario;
 
-    public ReviewController(Musica musica){
+    public ReviewController(Musica musica) {
         this.musica = musica;
     }
 
@@ -64,14 +69,13 @@ public class ReviewController implements Initializable{
 
     private ReviewDAO reviewDAO = DaoFactory.createReviewDAO();
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configureTableColumns();
-        
+
     }
 
-    public void configureTableColumns(){
+    public void configureTableColumns() {
         columnUsuario.setCellValueFactory(new PropertyValueFactory<>("user"));
         columnReview.setCellValueFactory(new PropertyValueFactory<>("comentario"));
 
@@ -86,11 +90,11 @@ public class ReviewController implements Initializable{
                 }
             }
         });
-    List<Review> reviews = reviewDAO.findAll(musica);
-    tableReview.getItems().addAll(reviews);
-    txtNomeMusica.setText(musica.getTitulo());
-    txtArtista.setText(musica.getArtista());
-    txtEstilo.setText(musica.getEstilo());
+        List<Review> reviews = reviewDAO.findAll(musica);
+        tableReview.getItems().addAll(reviews);
+        txtNomeMusica.setText(musica.getTitulo());
+        txtArtista.setText(musica.getArtista());
+        txtEstilo.setText(musica.getEstilo());
     }
 
     @FXML
@@ -104,7 +108,6 @@ public class ReviewController implements Initializable{
         tableReview.getItems().clear();
         tableReview.getItems().addAll(reviews);
     }
-
 
     public void onButtonCriarReview() {
         abrirJanelaCriarReview();
@@ -133,6 +136,42 @@ public class ReviewController implements Initializable{
         tableReview.setItems(reviews);
     }
 
+    @FXML
+    private void onHandleDeletarReview() {
+        Review reviewSelecionada = tableReview.getSelectionModel().getSelectedItem();
 
+        if (reviewSelecionada != null) {
+            if (reviewSelecionada.getUser().getUsername().equals(usuario.getUsername())) {
+                boolean confirmacao = mostrarConfirmacao("Deseja deletar esta review?");
+                if (confirmacao) {
+                    reviewDAO.deleteReview(reviewSelecionada);
+                    atualizarTabelaReviewMusica();
+                }
+            } else {
+                mostrarMensagem("Você só pode deletar suas próprias reviews.");
+            }
+        } else {
+            mostrarMensagem("Selecione uma review para deletar.");
+        }
+    }
+
+    private boolean mostrarConfirmacao(String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmação");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+
+        Optional<ButtonType> resultado = alert.showAndWait();
+        return resultado.isPresent() && resultado.get() == ButtonType.OK;
+    }
+
+    private void mostrarMensagem(String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informação");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+
+        alert.showAndWait();
+    }
 
 }

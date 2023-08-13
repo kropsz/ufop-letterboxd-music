@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -12,7 +13,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
@@ -35,6 +38,8 @@ public class UsuarioController implements Initializable {
     private Button buttonPesquisar;
     @FXML
     private Button buttonReview;
+    @FXML
+    private Button buttonRemoverMusica;
     @FXML
     private Button buttonSelecionarPlaylist;
     @FXML
@@ -76,7 +81,7 @@ public class UsuarioController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         configureTableColumns();
         atualizarTotais();
-        
+
     }
 
     public void configureTableColumns() {
@@ -117,7 +122,6 @@ public class UsuarioController implements Initializable {
         abrirJanelaCriarPlaylist();
     }
 
-
     private void abrirJanelaCriarPlaylist() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/PlaylistCriação.fxml"));
@@ -136,8 +140,46 @@ public class UsuarioController implements Initializable {
     }
 
     private void atualizarTabelaPlaylistUsuario() {
-            playlists = playlistDAO.findAllByUsername(usuarioLogado);
-            tablePlaylist.setItems(playlists);
+        playlists = playlistDAO.findAllByUsername(usuarioLogado);
+        tablePlaylist.setItems(playlists);
+    }
+
+    @FXML
+    private void onHandleDeletarReview() {
+        Playlist playlistSelecionada = tablePlaylist.getSelectionModel().getSelectedItem();
+        if (playlistSelecionada != null) {
+            if (playlistSelecionada.getUser().getUsername().equals(usuarioLogado.getUsername())) {
+                boolean confirmacao = mostrarConfirmacao("Deseja deletar esta playlist?");
+                if (confirmacao) {
+                    playlistDAO.deletePlaylist(playlistSelecionada, usuarioLogado);
+                    atualizarTotais();
+                    atualizarTabelaPlaylistUsuario();
+                }
+            } else {
+                mostrarMensagem("Você só pode deletar suas próprias playlists.");
+            }
+        } else {
+            mostrarMensagem("Selecione uma playlist para deletar.");
+        }
+    }
+
+    private boolean mostrarConfirmacao(String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmação");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+
+        Optional<ButtonType> resultado = alert.showAndWait();
+        return resultado.isPresent() && resultado.get() == ButtonType.OK;
+    }
+
+    private void mostrarMensagem(String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informação");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+
+        alert.showAndWait();
     }
 
     @FXML
@@ -151,10 +193,11 @@ public class UsuarioController implements Initializable {
     @FXML
     private void abrirCenaExibirPlaylist(Playlist playlist) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/PlaylistView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Playlists.fxml"));
             Parent root = loader.load();
             PlaylistViewController controller = loader.getController();
             if (playlist != null) {
+                controller.setUsuario(usuarioLogado);
                 controller.setPlaylist(playlist);
                 controller.configureTableColumns();
             }
@@ -177,20 +220,20 @@ public class UsuarioController implements Initializable {
     }
 
     @FXML
-    private void abrirCenaExibirReviews(Musica musica){
-        try{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Review.fxml"));
-        ReviewController controller = new ReviewController(musica);
-        controller.setUsuario(usuarioLogado);
-        loader.setController(controller);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.showAndWait();
-        atualizarTotais();
-    }catch(IOException e){
-        e.printStackTrace();
+    private void abrirCenaExibirReviews(Musica musica) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Review.fxml"));
+            ReviewController controller = new ReviewController(musica);
+            controller.setUsuario(usuarioLogado);
+            loader.setController(controller);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+            atualizarTotais();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

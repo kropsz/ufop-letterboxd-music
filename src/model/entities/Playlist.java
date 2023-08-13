@@ -16,7 +16,7 @@ public class Playlist {
         this.desc = desc;
     }
 
-    public Playlist(String nome, Usuario user, String desc){
+    public Playlist(String nome, Usuario user, String desc) {
         this.nome = nome;
         this.user = user;
         this.desc = desc;
@@ -79,7 +79,4 @@ public class Playlist {
         return true;
     }
 
-
-
-    
 }

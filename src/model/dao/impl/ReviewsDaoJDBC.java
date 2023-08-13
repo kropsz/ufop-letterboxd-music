@@ -17,15 +17,11 @@ import model.entities.Musica;
 import model.entities.Review;
 import model.entities.Usuario;
 
-public class ReviewsDaoJDBC implements ReviewDAO{
+public class ReviewsDaoJDBC implements ReviewDAO {
     private Connection conn;
-    
-    public ReviewsDaoJDBC(Connection conn){
+
+    public ReviewsDaoJDBC(Connection conn) {
         this.conn = conn;
-    }
-    @Override
-    public Review findByUsername(Usuario usuario) {
-        return null;
     }
 
     @Override
@@ -35,14 +31,14 @@ public class ReviewsDaoJDBC implements ReviewDAO{
         ResultSet rs = null;
         try {
             st = conn.prepareStatement("""
-                SELECT r.*, u.*
-                FROM reviews r
-                INNER JOIN usuarios u ON r.Username = u.Username
-                WHERE r.MusicaID = ?
-                    """);
+                    SELECT r.*, u.*
+                    FROM reviews r
+                    INNER JOIN usuarios u ON r.Username = u.Username
+                    WHERE r.MusicaID = ?
+                        """);
             st.setInt(1, musica.getId());
             rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("ID");
                 String comentario = rs.getString("Comentario");
                 Usuario usuario = new Usuario();
@@ -54,7 +50,7 @@ public class ReviewsDaoJDBC implements ReviewDAO{
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }finally{
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
@@ -63,7 +59,7 @@ public class ReviewsDaoJDBC implements ReviewDAO{
 
     @Override
     public void create(Review review) {
-                PreparedStatement st = null;
+        PreparedStatement st = null;
         try {
             st = conn.prepareStatement("""
                         INSERT INTO reviews (MusicaID, Username, Comentario)
@@ -82,30 +78,44 @@ public class ReviewsDaoJDBC implements ReviewDAO{
     }
 
     @Override
-    public void delete(Integer id) {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public void deleteReview(Review review) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("""
+                    DELETE FROM reviews WHERE ID = ?
+                    """);
+            st.setInt(1, review.getId());
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
     }
+
     @Override
     public int countReviewsByUsuario(Usuario usuario) {
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
             st = conn.prepareStatement("""
-                SELECT COUNT(*) AS total FROM reviews WHERE Username = ?
-            """);
+                        SELECT COUNT(*) AS total FROM reviews WHERE Username = ?
+                    """);
             st.setString(1, usuario.getUsername());
             rs = st.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return rs.getInt("total");
             }
             return 0;
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        } finally{
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
     }
+
     @Override
     public ObservableList<Review> findAllByMusica(Musica musica) {
         ObservableList<Review> reviews = FXCollections.observableArrayList();
@@ -113,14 +123,14 @@ public class ReviewsDaoJDBC implements ReviewDAO{
         ResultSet rs = null;
         try {
             st = conn.prepareStatement("""
-                SELECT r.*, u.*
-                FROM reviews r
-                INNER JOIN usuarios u ON r.Username = u.Username
-                WHERE r.MusicaID = ?
-                    """);
+                    SELECT r.*, u.*
+                    FROM reviews r
+                    INNER JOIN usuarios u ON r.Username = u.Username
+                    WHERE r.MusicaID = ?
+                        """);
             st.setInt(1, musica.getId());
             rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("ID");
                 String comentario = rs.getString("Comentario");
                 Usuario usuario = new Usuario();
@@ -132,12 +142,13 @@ public class ReviewsDaoJDBC implements ReviewDAO{
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }finally{
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
         return reviews;
     }
+
     @Override
     public List<Review> findReviewByUsername(String nomeUsername) {
         List<Review> reviewsEncontradas = new ArrayList<>();
@@ -146,40 +157,39 @@ public class ReviewsDaoJDBC implements ReviewDAO{
         Review review;
         try {
             st = conn.prepareStatement("""
-                SELECT r.ID, r.Comentario, m.ID AS MusicaID, m.Titulo, m.Artista, u.Username
-                FROM reviews r
-                INNER JOIN musicas m ON r.MusicaID = m.ID
-                INNER JOIN usuarios u ON r.Username = u.Username
-                WHERE u.Username LIKE ?
-                """);
+                    SELECT r.ID, r.Comentario, m.ID AS MusicaID, m.Titulo, m.Artista, u.Username
+                    FROM reviews r
+                    INNER JOIN musicas m ON r.MusicaID = m.ID
+                    INNER JOIN usuarios u ON r.Username = u.Username
+                    WHERE u.Username LIKE ?
+                    """);
             st.setString(1, "%" + nomeUsername + "%");
             rs = st.executeQuery();
             while (rs.next()) {
                 review = new Review();
                 review.setId(rs.getInt("ID"));
                 review.setComentario(rs.getString("Comentario"));
-                
+
                 Musica musica = new Musica();
                 musica.setId(rs.getInt("MusicaID"));
                 musica.setTitulo(rs.getString("Titulo"));
                 musica.setArtista(rs.getString("Artista"));
-                
+
                 Usuario usuario = new Usuario();
                 usuario.setUsername(rs.getString("Username"));
-                
+
                 review.setMusica(musica);
                 review.setUser(usuario);
-                
+
                 reviewsEncontradas.add(review);
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
-        }finally{
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
         return reviewsEncontradas;
     }
-    
-    
+
 }

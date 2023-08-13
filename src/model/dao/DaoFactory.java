@@ -11,20 +11,19 @@ import model.dao.interfaces.ReviewDAO;
 import model.dao.interfaces.UsuarioDAO;
 
 public class DaoFactory {
-    public static UsuarioDAO createuUsuarioDAO(){
+    public static UsuarioDAO createuUsuarioDAO() {
         return new UsuarioDaoJDBC(DB.getConnection());
     }
-    
 
-    public static MusicaDAO createMusicaDAO(){
-       return new MusicaDaoJDBC(DB.getConnection());
+    public static MusicaDAO createMusicaDAO() {
+        return new MusicaDaoJDBC(DB.getConnection());
     }
 
-   public static PlaylistDAO createPlaylistDAO(){
+    public static PlaylistDAO createPlaylistDAO() {
         return new PlaylistDaoJDBC(DB.getConnection());
-}
+    }
 
-    public static ReviewDAO createReviewDAO(){
+    public static ReviewDAO createReviewDAO() {
         return new ReviewsDaoJDBC(DB.getConnection());
-   }
+    }
 }

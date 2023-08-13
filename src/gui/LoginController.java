@@ -14,7 +14,6 @@ import model.dao.DaoFactory;
 import model.dao.interfaces.UsuarioDAO;
 import model.entities.Usuario;
 
-
 public class LoginController {
 
     @FXML
@@ -35,6 +34,7 @@ public class LoginController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     private Usuario usuarioLogado;
 
     public void setUsuarioLogado(Usuario usuario) {
@@ -59,7 +59,7 @@ public class LoginController {
 
     private void abrirJanelaUsuario() {
         try {
-            
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Usuario.fxml"));
             UsuarioController usuarioController = new UsuarioController(usuarioLogado);
             loader.setController(usuarioController);
@@ -78,7 +78,7 @@ public class LoginController {
     private void handleCadastrarButton() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Cadastro.fxml"));
-            Parent root = loader.load(); 
+            Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();

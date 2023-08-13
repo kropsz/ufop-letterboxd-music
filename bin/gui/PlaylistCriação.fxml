@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="288.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PlaylistCriaçãoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="288.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PlaylistCriaçãoController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="77.0" prefWidth="327.0" text="Crie sua PLAYLIST">
          <font>
@@ -20,12 +19,12 @@
          </font>
       </Label>
       <TextField fx:id="txtPlaylistName" layoutX="14.0" layoutY="116.0" promptText="nome" />
-      <TextField fx:id="txtDesc" layoutX="14.0" layoutY="171.0" prefHeight="70.0" prefWidth="149.0" promptText="desc" />
+      <TextField fx:id="txtDesc" alignment="TOP_LEFT" layoutX="14.0" layoutY="171.0" prefHeight="63.0" prefWidth="250.0" promptText="desc" />
       <Label layoutX="14.0" layoutY="147.0" text="Descrição">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="buttonCriarPlaylist" layoutX="16.0" layoutY="262.0" mnemonicParsing="false" onAction="#criarPlaylist" text="CRIAR" />
+      <Button fx:id="buttonCriarPlaylist" layoutX="14.0" layoutY="262.0" mnemonicParsing="false" onAction="#criarPlaylist" style="-fx-background-color: black;" text="Criar Playlist" textFill="WHITE" />
    </children>
 </AnchorPane>

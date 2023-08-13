@@ -48,12 +48,6 @@ public class MusicaDaoJDBC implements MusicaDAO {
     }
 
     @Override
-    public Musica findById(Integer id) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
-
-    @Override
     public List<Musica> findAll() {
         List<Musica> musicas = new ArrayList<>();
         PreparedStatement st = null;
@@ -81,23 +75,6 @@ public class MusicaDaoJDBC implements MusicaDAO {
         }
 
         return musicas;
-    }
-    @Override
-    public void create(Musica musica) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
-    }
-
-    @Override
-    public void update(Musica musica) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public void delete(Integer id) {
-       
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
 }

@@ -7,12 +7,16 @@ import model.entities.Musica;
 import model.entities.Review;
 import model.entities.Usuario;
 
-public interface ReviewDAO{
-    Review findByUsername(Usuario usuario);
+public interface ReviewDAO {
     List<Review> findAll(Musica musica);
+
     List<Review> findReviewByUsername(String nomeUsername);
+
     int countReviewsByUsuario(Usuario usuario);
-    void create(Review Reviews);
+
+    void create(Review reviews);
+
     ObservableList<Review> findAllByMusica(Musica musica);
-    void delete(Integer id);
+
+    void deleteReview(Review review);
 }

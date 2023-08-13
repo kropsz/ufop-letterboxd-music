@@ -6,9 +6,6 @@ import model.entities.Musica;
 
 public interface MusicaDAO {
     List<Musica> findByMusica(String musica);
-    Musica findById(Integer id);
+
     List<Musica> findAll();
-    void create(Musica musica);
-    void update(Musica musica);
-    void delete(Integer id);
 }

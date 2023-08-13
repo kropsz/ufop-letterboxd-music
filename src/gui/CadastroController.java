@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.dao.DaoFactory;
 import model.dao.interfaces.UsuarioDAO;
 import model.entities.Usuario;
@@ -43,9 +44,12 @@ public class CadastroController {
             alert.setContentText("Cadastro efetuado com sucesso!");
             alert.showAndWait();
         }
-
+            Stage stage = (Stage) cadastroMessageLabel.getScene().getWindow();
+            stage.close();
+        
         txtNewNome.clear();
         txtNewUsername.clear();
         txtNewPassoword.clear();
+        
     }
 }

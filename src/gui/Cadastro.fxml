@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="421.0" layoutX="226.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Image1Scne.png" />
+            <Image url="@images/bcffc363-0094-4317-8db0-8cca4e84bc35.jpg" />
          </image>
       </ImageView>
       <Pane prefHeight="400.0" prefWidth="226.0" style="-fx-background-color: black;">

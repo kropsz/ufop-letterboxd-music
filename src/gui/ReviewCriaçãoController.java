@@ -32,18 +32,16 @@ public class ReviewCriaçãoController {
         this.musica = musica;
     }
 
-
     private ReviewDAO reviewDAO = DaoFactory.createReviewDAO();
-
 
     public void onButtonCriarReview() {
         criarReview();
     }
 
     @FXML
-    private void criarReview(){
+    private void criarReview() {
         String text = txtReview.getText();
-        
+
         Review review = new Review(musica, user, text);
         reviewDAO.create(review);
         txtReview.getScene().getWindow().hide();

@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="421.0" layoutX="226.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Image1Scne.png" />
+            <Image url="@images/bcffc363-0094-4317-8db0-8cca4e84bc35.jpg" />
          </image>
       </ImageView>
       <Pane prefHeight="400.0" prefWidth="226.0" style="-fx-background-color: black;">
@@ -27,7 +27,7 @@
                </font>
             </Text>
             <TextField fx:id="txtUsername" alignment="TOP_LEFT" layoutX="39.0" layoutY="159.0" promptText="Username" />
-            <Button fx:id="loginButton" layoutX="24.0" layoutY="276.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-border-color: white; -fx-background-color: transparent;" stylesheets="@Economia/trabalho-economia/botaocss.css" text="Logar" textFill="WHITE" />
+            <Button fx:id="loginButton" layoutX="24.0" layoutY="276.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-border-color: white; -fx-background-color: transparent;" text="Logar" textFill="WHITE" />
             <Button fx:id="cadastrarButton" layoutX="121.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleCadastrarButton" style="-fx-background-color: transparent; -fx-border-color: white;" text="Cadastrar" textFill="WHITE" />
             <Text fill="WHITE" layoutX="88.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ou">
                <font>

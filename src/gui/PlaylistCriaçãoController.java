@@ -30,9 +30,8 @@ public class PlaylistCriaçãoController {
 
     PlaylistDAO playlistDAO = DaoFactory.createPlaylistDAO();
 
-
     @FXML
-    private void criarPlaylist(){
+    private void criarPlaylist() {
         String nome = txtPlaylistName.getText();
         String desc = txtDesc.getText();
 

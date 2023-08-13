@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane cache="true" layoutY="-1.0" prefHeight="99.0" prefWidth="600.0" style="-fx-background-color: black;">
+      <Pane cache="true" layoutY="-1.0" prefHeight="99.0" prefWidth="632.0" style="-fx-background-color: black;">
          <children>
             <Text fill="WHITE" fontSmoothingType="LCD" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" wrappingWidth="55.736328125" />
             <Text fx:id="txtNomeUsuario" fill="WHITE" layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Usuário" wrappingWidth="147.52983032764317">
@@ -29,16 +29,16 @@
             <Separator layoutX="506.0" layoutY="30.0" opacity="0.26" orientation="VERTICAL" prefHeight="51.0" prefWidth="8.0" />
          </children>
       </Pane>
-      <Pane layoutX="-5.0" layoutY="89.0" opacity="0.22" prefHeight="17.0" prefWidth="606.0" style="-fx-background-color: black;" />
-      <SplitPane dividerPositions="0.3110367892976589" layoutY="106.0" prefHeight="347.0" prefWidth="600.0">
+      <Pane layoutX="-5.0" layoutY="89.0" opacity="0.22" prefHeight="17.0" prefWidth="639.0" style="-fx-background-color: black;" />
+      <SplitPane dividerPositions="0.3110367892976589" layoutY="106.0" prefHeight="344.0" prefWidth="632.0">
          <items>
             <AnchorPane prefHeight="292.0" prefWidth="205.0">
                <children>
                   <TextField fx:id="txtPesquisar" layoutX="14.0" layoutY="24.0" prefHeight="26.0" prefWidth="120.0" promptText="Pesquisar Musica" />
                   <TableView fx:id="tabelaMusica" layoutX="8.0" layoutY="60.0" prefHeight="232.0" prefWidth="176.0">
                     <columns>
-                      <TableColumn fx:id="columnTitulo" prefWidth="75.0" text="Titulo" />
-                      <TableColumn fx:id="columnArtista" prefWidth="75.0" text="Artista" />
+                      <TableColumn fx:id="columnTitulo" prefWidth="89.0" text="Titulo" />
+                      <TableColumn fx:id="columnArtista" prefWidth="86.0" text="Artista" />
                     </columns>
                   </TableView>
                   <Separator layoutX="189.0" orientation="VERTICAL" prefHeight="200.0" />
@@ -48,12 +48,12 @@
                   <Button fx:id="buttonReview" layoutX="14.0" layoutY="306.0" mnemonicParsing="false" onAction="#onSelecionarButtonClickMusica" style="-fx-background-color: black;" text="Reviews" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="340.0" prefWidth="396.0">
+            <AnchorPane prefHeight="345.0" prefWidth="438.0">
                <children>
                   <TableView fx:id="tablePlaylist" layoutX="-3.0" layoutY="60.0" prefHeight="232.0" prefWidth="397.0">
                     <columns>
-                      <TableColumn fx:id="columnNome" prefWidth="75.0" text="Nome" />
-                      <TableColumn fx:id="columnDesc" prefWidth="75.0" text="Descrição" />
+                      <TableColumn fx:id="columnNome" prefWidth="181.0" text="Nome" />
+                      <TableColumn fx:id="columnDesc" prefWidth="215.0" text="Descrição" />
                     </columns>
                   </TableView>
                   <Text fx:id="txtInfoPlaylists" layoutX="20.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suas Playlists">
@@ -62,7 +62,8 @@
                      </font>
                   </Text>
                   <Button fx:id="buttonCriarPlaylist" layoutX="283.0" layoutY="19.0" mnemonicParsing="false" onAction="#onButtonCriarPlaylist" style="-fx-background-color: black;" text="Criar Playlist" textFill="WHITE" />
-                  <Button fx:id="buttonSelecionarPlaylist" layoutX="302.0" layoutY="306.0" mnemonicParsing="false" onAction="#onSelecionarButtonClick" style="-fx-background-color: black;" text="Selecionar" textFill="WHITE" />
+                  <Button fx:id="buttonSelecionarPlaylist" layoutX="14.0" layoutY="300.0" mnemonicParsing="false" onAction="#onSelecionarButtonClick" style="-fx-background-color: black;" text="Selecionar" textFill="WHITE" />
+                  <Button fx:id="buttonRemoverPlaylist" layoutX="274.0" layoutY="300.0" mnemonicParsing="false" onAction="#onHandleDeletarReview" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: black;" text="Remover Playlist" textFill="WHITE" />
                </children>
             </AnchorPane>
          </items>

@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="288.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReviewCriaçãoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="288.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReviewCriaçãoController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="77.0" prefWidth="327.0" text="Crie sua Review">
+      <Label layoutX="16.0" layoutY="-6.0" prefHeight="77.0" prefWidth="327.0" text="Crie sua Review">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <TextField fx:id="txtReview" layoutX="16.0" layoutY="81.0" prefHeight="70.0" prefWidth="149.0" promptText="review" />
-      <Button fx:id="buttonCriarReview" layoutX="16.0" layoutY="168.0" mnemonicParsing="false" onAction="#onButtonCriarReview" style="-fx-background-color: black;" text="Criar Review" textFill="WHITE" />
+      <TextField fx:id="txtReview" alignment="TOP_LEFT" layoutX="18.0" layoutY="65.0" prefHeight="77.0" prefWidth="253.0" promptText="review" />
+      <Button fx:id="buttonCriarReview" layoutX="18.0" layoutY="156.0" mnemonicParsing="false" onAction="#onButtonCriarReview" style="-fx-background-color: black;" text="Criar Review" textFill="WHITE" />
    </children>
 </AnchorPane>
