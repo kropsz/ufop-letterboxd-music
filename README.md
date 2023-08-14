@@ -3,14 +3,21 @@ LetterboxdMusic - Plataforma de Avaliação e Criação de Playlists Musicais
 O LetterboxdMusic é um projeto JavaFX desenvolvido como parte da matéria de Banco de Dados, o projeto permite que os usuários explorem, avaliem e criem playlists personalizadas sempre interagindo com outros usuários.
 
 ## Recursos
-![Tela de Usuario](C:\Users\pedro\OneDrive\Documentos\projetos\letterboxd\letterboxd-music\src\gui\images\usuario.png)
+
+**Interface do Usuário**
+<div>
+<img src="https://github.com/kropsz/letterboxd-music/assets/114687669/265b9b03-e75e-41b8-b660-c29b55d029f9" width="400px" />
+</div>
 
 - **Avaliações Musicais:** Os usuários podem escrever avaliações sobre suas músicas favoritas.
-![Tela de Review](C:\Users\pedro\OneDrive\Documentos\projetos\letterboxd\letterboxd-music\src\gui\images\reviews.png)
+<div>
+<img src="https://github.com/kropsz/letterboxd-music/assets/114687669/3a32b2d4-6884-4c71-b3ed-7850ade47d7f" width="400px" />
+</div>
 
 - **Playlists Personalizadas:** Crie playlists com suas músicas favoritas.
-![Tela de Playlist](C:\Users\pedro\OneDrive\Documentos\projetos\letterboxd\letterboxd-music\src\gui\images\playlists.png)
-
+<div>
+<img src="https://github.com/kropsz/letterboxd-music/assets/114687669/02ff6d6b-8e1a-454d-ab13-5ab5e67f8556" width="400px" />
+</div>
 
 - **Exploração Musical:** Descubra novas músicas e artistas explorando as playlists criadas por outros usuários.
 
