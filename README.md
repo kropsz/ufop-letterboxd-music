@@ -1,6 +1,6 @@
 ## LetterboxdMusic - Plataforma de Avaliação e Criação de Playlists Musicais
 
-O LetterboxdMusic é um projeto JavaFX desenvolvido como parte da matéria de Banco de Dados, o projeto permite que os usuários explorem, avaliem e criem playlists personalizadas sempre interagindo com outros usuários.
+O LetterboxdMusic é um projeto JavaFX desenvolvido para a matéria de Banco de Dados, o projeto permite que os usuários explorem, avaliem e criem playlists personalizadas sempre interagindo com outros usuários.
 
 ## Recursos
 
@@ -37,9 +37,16 @@ https://drive.google.com/drive/folders/1LaqNhfCGSgDWNzlJG6UI5H8YOmN_me36?usp=sha
 
 1. Clone este repositório para a sua máquina local:
 
-   git clone https://github.com/kropsz/letterboxd-music.git
+   - git clone https://github.com/kropsz/letterboxd-music.git
 
 2. VARIÁVEIS DE AMBIENTE A CONFIGURAR:
-    PATH_TO_FX (caminho da lib JavaFx)
-
-    CMD RUN COMMAND: java --module-path %PATH_TO_FX% --add-modules javafx.controls,javafx.fxml
+   
+   - JAVA_HOME (caminho do JDK)
+     
+3. LAUNCH.JSON
+   
+   - Certifique-se de que o arquivo launch.json passe o caminho da biblioteca JavaFX
+   <div>
+   <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/114687669/260499853-ba6b3264-2e9c-4d8a-b175-21c53fb72299.png"                   width="400px" />
+   </div>
+   
