@@ -17,7 +17,7 @@
       <Pane cache="true" layoutY="-1.0" prefHeight="99.0" prefWidth="600.0" style="-fx-background-color: black;">
          <children>
             <Text fill="WHITE" fontSmoothingType="LCD" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" wrappingWidth="55.736328125" />
-            <Text fx:id="txtUserName" fill="WHITE" layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Usuário" wrappingWidth="147.52983032764317">
+            <Text fx:id="txtUserName" fill="WHITE" layoutX="14.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Usuário" wrappingWidth="550.5298303276431">
                <font>
                   <Font size="38.0" />
                </font>

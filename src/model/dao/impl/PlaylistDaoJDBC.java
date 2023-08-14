@@ -321,11 +321,13 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
         try {
             st = conn.prepareStatement(
                     """
-                            SELECT p.ID, p.Nome, u.Username, u.Nome AS UserNome FROM playlists p
-                            JOIN usuarios u ON p.Username = u.Username
-                            WHERE u.Username = ?
+                        SELECT playlists.*, usuarios.nome, usuarios.username
+                        FROM playlists
+                        JOIN usuarios ON playlists.username = usuarios.username
+                        WHERE usuarios.username LIKE ?
+                        
                             """);
-            st.setString(1, nomeUsername);
+            st.setString(1, "%" + nomeUsername + "%");
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -335,7 +337,7 @@ public class PlaylistDaoJDBC implements PlaylistDAO {
                 playlist.setDesc(rs.getString("Descricao"));
                 Usuario owner = new Usuario();
                 owner.setUsername(rs.getString("Username"));
-                owner.setNome(rs.getString("UserNome"));
+                owner.setNome(rs.getString("Nome"));
 
                 playlist.setUser(owner);
 

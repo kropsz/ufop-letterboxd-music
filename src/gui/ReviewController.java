@@ -94,7 +94,7 @@ public class ReviewController implements Initializable {
     @FXML
     public void searchButton() {
         String nomeUsername = txtPesquisar.getText();
-        List<Review> reviewEncontradas = reviewDAO.findReviewByUsername(nomeUsername);
+        List<Review> reviewEncontradas = reviewDAO.findReviewByUsername(nomeUsername, musica);
         exibirReviewsEncontradas(reviewEncontradas);
     }
 

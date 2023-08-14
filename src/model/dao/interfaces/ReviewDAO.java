@@ -10,7 +10,7 @@ import model.entities.Usuario;
 public interface ReviewDAO {
     List<Review> findAll(Musica musica);
 
-    List<Review> findReviewByUsername(String nomeUsername);
+    List<Review> findReviewByUsername(String nomeUsername, Musica musica);
 
     int countReviewsByUsuario(Usuario usuario);
 

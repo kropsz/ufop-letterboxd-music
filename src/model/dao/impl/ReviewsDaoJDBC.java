@@ -150,27 +150,28 @@ public class ReviewsDaoJDBC implements ReviewDAO {
     }
 
     @Override
-    public List<Review> findReviewByUsername(String nomeUsername) {
+    public List<Review> findReviewByUsername(String nomeUsername, Musica musica) {
         List<Review> reviewsEncontradas = new ArrayList<>();
         PreparedStatement st = null;
         ResultSet rs = null;
         Review review;
         try {
             st = conn.prepareStatement("""
-                    SELECT r.ID, r.Comentario, m.ID AS MusicaID, m.Titulo, m.Artista, u.Username
-                    FROM reviews r
-                    INNER JOIN musicas m ON r.MusicaID = m.ID
-                    INNER JOIN usuarios u ON r.Username = u.Username
-                    WHERE u.Username LIKE ?
+                SELECT r.ID, r.Comentario, m.ID AS MusicaID, m.Titulo, m.Artista, u.Username
+                FROM reviews r
+                INNER JOIN musicas m ON r.MusicaID = m.ID
+                INNER JOIN usuarios u ON r.Username = u.Username
+                WHERE u.Username LIKE ? AND m.ID = ?;                
                     """);
             st.setString(1, "%" + nomeUsername + "%");
+            st.setInt(2, musica.getId());
             rs = st.executeQuery();
             while (rs.next()) {
                 review = new Review();
                 review.setId(rs.getInt("ID"));
                 review.setComentario(rs.getString("Comentario"));
 
-                Musica musica = new Musica();
+        
                 musica.setId(rs.getInt("MusicaID"));
                 musica.setTitulo(rs.getString("Titulo"));
                 musica.setArtista(rs.getString("Artista"));
