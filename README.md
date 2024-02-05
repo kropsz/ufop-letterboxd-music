@@ -1,6 +1,6 @@
 ## LetterboxdMusic - Plataforma de Avaliação e Criação de Playlists Musicais
 
-O LetterboxdMusic é um projeto JavaFX desenvolvido para a matéria de Banco de Dados, o projeto permite que os usuários explorem, avaliem e criem playlists personalizadas sempre interagindo com outros usuários.
+O LetterboxdMusic é um projeto JavaFX desenvolvido para a matéria de Banco de Dados e Engenharia de Software, o projeto permite que os usuários explorem, avaliem e criem playlists personalizadas sempre interagindo com outros usuários.
 
 ## Recursos
 
