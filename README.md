@@ -2,6 +2,14 @@
 
 O LetterboxdMusic é um projeto JavaFX desenvolvido para a matéria de Banco de Dados e Engenharia de Software, o projeto permite que os usuários explorem, avaliem e criem playlists personalizadas sempre interagindo com outros usuários.
 
+## Documento de Requisitos: [Clique aqui !]( https://docs.google.com/document/d/e/2PACX-1vTBBukDn25bTpWjoNBHweDMcqYal_mTPI-Mymaoz_vmzAw7g6NlkpJf2hx0ojLjJQ/pub?embedded=true)
+
+## Modelo Relacional
+
+<div>
+<img src="https://github.com/kropsz/letterboxd-music/assets/114687669/766a31d5-bdce-4358-b001-d4544055c20b" width="400px" />
+</div>
+
 ## Recursos
 
 **Interface do Usuário**
