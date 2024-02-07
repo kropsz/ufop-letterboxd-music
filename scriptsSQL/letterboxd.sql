@@ -32,7 +32,7 @@ CREATE TABLE `musicas` (
 CREATE TABLE `playlists` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `Nome` varchar(255) DEFAULT NULL,
-  `Descriacao` mediumtext,
+  `Descricao` mediumtext,
   `Username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`),
